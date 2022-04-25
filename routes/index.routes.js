@@ -5,4 +5,6 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
+
+router.use('/', require('./api.routes/pokemon.routes'))
 module.exports = router;
