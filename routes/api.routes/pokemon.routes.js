@@ -1,46 +1,26 @@
-const router = require('express').Router()
+const router = require("express").Router();
 
-const ApiService = require('../../service/poke.api.service')
+const ApiService = require("../../service/poke.api.service");
 
-const Service = new ApiService
+const Service = new ApiService();
 
-
-
-router.get('/pokemons', (req, res, next) => {
-    let arr = []
-
-    for (let i = 1; i <= 150; i++) {
-        arr.push(i)
-    }
-    arr.map(eachPokemon => {
-        console.log(Service.getAOnePokemon(eachPokemon).then(data => console.log(data)))
-    })
-
-    // Service
-    //     .getAllPokemons(arr)
-    //     .then((data) => {
-    //         console.log(data)
-    //         //res.render('pokemon-views/pokemon-list', { pokemons })
-    //     })
-    //     .catch(err => res.send('estoy dando error', err))
-
-})
-
-
-router.get('/pokemons/:id', (req, res, next) => {
-    const { id } = req.params
-    Service
-        .getAOnePokemon(id)
+router.get("/pokemons", (req, res, next) => {
+    Service.getAllPokemons()
         .then(({ data }) => {
-            res.render('pokemon-views/pokemon-details', data)
-
+            console.log(data);
+            res.render("pokemon/list", data);
         })
-        .catch(err => err)
-})
+        .catch((error) => next(error));
+});
 
+router.get("/pokemons/:name", (req, res, next) => {
+    const { name } = req.params;
 
+    Service.getPokemonByName(name)
+        .then(({ data }) => {
+            res.render("pokemon/details", data);
+        })
+        .catch((error) => next(error));
+});
 
-
-
-
-module.exports = router
+module.exports = router;

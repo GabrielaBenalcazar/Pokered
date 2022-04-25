@@ -8,7 +8,7 @@ const { isLoggedOut, isLoggedIn } = require("./../middleware/route-guard");
 
 const User = require("../models/User.model");
 
-router.get("/register",isLoggedOut, (req, res, next) => {
+router.get("/register", isLoggedOut, (req, res, next) => {
     res.render("auth/register");
 });
 

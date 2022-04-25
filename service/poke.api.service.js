@@ -1,26 +1,17 @@
-const axios = require('axios')
+const axios = require("axios");
 
 class ApiService {
     constructor() {
-        this.axiosApp = axios.create({ baseURL: 'https://pokeapi.co/api/v2' })
+        this.axiosApp = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
     }
-
 
     getAllPokemons() {
-        let apiPokem = []
-        for (let i = 1; i < 150; ++i) {
-            apiPokem.push(i)
-        }
-        return apiPokem
-        //this.getAOnePokemon(apiPokem)
-
+        return this.axiosApp.get("/pokemon?limit=100000&offset=0");
     }
 
-
-    getAOnePokemon(id) {
-        return this.axiosApp.get(`/pokemon/${id}`)
+    getPokemonByName(name) {
+        return this.axiosApp.get(`/pokemon/${name}`);
     }
-
 }
 
-module.exports = ApiService
+module.exports = ApiService;
