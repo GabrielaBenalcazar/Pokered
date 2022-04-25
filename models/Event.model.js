@@ -1,9 +1,8 @@
 const { Schema, model } = require("mongoose");
 
-Const;
-eventSchema = newSchema(
+const eventSchema = new Schema(
     {
-        eventName: {
+        name: {
             type: String,
             trim: true,
             required: true,
@@ -12,27 +11,16 @@ eventSchema = newSchema(
             type: String,
             required: true,
         },
-        Location: {
+        location: {
             type: String,
         },
 
-        participant: [
-            {
-                type: Schema.Types.ObjectId,
-            },
-        ],
-
         img: {
-            type: string,
+            type: String,
             default: "URL", //----- some URL------//
         },
 
-        pokemons: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "poke API", //no sabemos meter los datos de la api aqui//)
-            },
-        ],
+        pokemons: [String],
     },
 
     {

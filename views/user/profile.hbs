@@ -1,0 +1,22 @@
+<div class="container">
+
+    <h1>Perfil de, {{user.username}}</h1>
+
+    <figure>
+        <img src="{{user.img}}" alt="foto de {{user.username}} " />
+    </figure>
+    <div>
+        <h3> TUS POKEMONS </h3>
+        {{user.pokemons}}
+    </div>
+
+    <div>
+        <h3> TUS EVENTOS </h3>
+        {{user.events}}
+    </div>
+
+    <div>
+        <a href="/profile/{{user._id}}/edit"> editar Perfil</a>
+    </div>
+
+</div>

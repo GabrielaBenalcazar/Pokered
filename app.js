@@ -14,7 +14,7 @@ require("./config/session.config")(app);
 const capitalized = require("./utils/capitalized");
 const projectName = "PokeRed";
 
-app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
+app.locals.appTitle = `${capitalized(projectName)} `;
 
 const index = require("./routes/index.routes");
 app.use("/", index);
