@@ -1,17 +1,16 @@
-const{Schema,model
-}=require("mongoose");
+const{Schema,model}=require("mongoose");
  
 constuserSchema=newSchema(
   { 
-    username: {
+    userName: {
       type: String,
       trim: true,
-      required: [true,'El nombre de usuario es obligatorio'],
-      minlength: [3,'El nombre de usuario es demasiado corto']
+      required: true,
+      minlength: 3,
     },
     email: {
       type: String,
-      required: [true,'El email es obligatorio.'],
+      required: true,
       unique: true,
       lowercase: true,
       trim: true

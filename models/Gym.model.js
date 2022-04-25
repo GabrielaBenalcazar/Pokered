@@ -1,10 +1,9 @@
-const{Schema,model
-}=require("mongoose");
+const{Schema,model}=require("mongoose");
  
 Const
 gymSchema = newSchema(
   {
-    gymname: {
+    gymName: {
       type: String,
       trim: true,
       required: true,
