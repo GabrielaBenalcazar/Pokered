@@ -4,10 +4,18 @@ const User = require("../models/User.model");
 
 const { isLoggedIn } = require("./../middleware/route-guard");
 
+const { checkRole } = require("./../middleware/route-guard");
+
+///profile User
+
 router.get("/profile", isLoggedIn, (req, res, next) => {
-    res.render("user/profile", { user: req.session.currentUser });
+    const isLeader = req.session.currentUser.role === 'LEADER'
+
+    res.render("user/profile", { user: req.session.currentUser, isLeader });
 });
 
+
+///EDIT PROFILE
 router.get("/profile/:id/edit", isLoggedIn, (req, res, next) => {
     res.render("user/edit", { user: req.session.currentUser });
 });
@@ -21,18 +29,27 @@ router.post("/profile/:id/edit", isLoggedIn, (req, res, next) => {
     User
         .findByIdAndUpdate(id, { username, email, password, img })
         .then(() => {
-        res.redirect("/profile");
-    });
+            res.redirect("/profile");
+        });
 });
 
+
+///DELETE USER
 router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
     User
         .findByIdAndDelete(id)
         .then(() => {
-        res.redirect("/register");
-    });
+            res.redirect("/register");
+        });
 });
 
+
+////GYM LEADER and ADMIN ONLY
+router.get("/profile/gym", isLoggedIn, checkRole('ADMIN', 'LEADER'), (req, res, next) => {
+
+    res.render('user/gym')
+
+});
 module.exports = router;

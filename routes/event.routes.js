@@ -1,6 +1,11 @@
 const router = require("express").Router();
 const Event = require('./../models/Event.model')
 
+const { checkRole } = require("./../middleware/route-guard");
+
+
+
+///////////////////////////LIST EVENTS
 router.get("/events", (req, res, next) => {
     Event
         .find()
@@ -9,7 +14,10 @@ router.get("/events", (req, res, next) => {
         })
         .catch(err => err)
 });
-router.get("/events/create", (req, res, next) => {
+
+
+////////////////////////CREATE EVENTS
+router.get("/events/create", checkRole('ADMIN', 'LEADER'), (req, res, next) => {
     res.render('./poke-events/create-event')
 });
 
@@ -24,7 +32,7 @@ router.post("/events/create", (req, res, next) => {
 });
 
 
-
+//////////////////////////////EDIT EVENTS
 router.get("/events/:id/edit", (req, res, next) => {
     const { id } = req.params
     Event
@@ -34,7 +42,6 @@ router.get("/events/:id/edit", (req, res, next) => {
         })
         .catch(err => err)
 });
-
 
 router.post("/events/:id/edit", (req, res, next) => {
     const { id } = req.params
@@ -47,6 +54,7 @@ router.post("/events/:id/edit", (req, res, next) => {
         .catch(err => err)
 });
 
+/////////////////////////////DELETE EVENTS
 router.post("/events/:id/delete", (req, res, next) => {
     const { id } = req.params
     Event

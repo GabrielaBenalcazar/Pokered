@@ -16,19 +16,27 @@
     </div>
 
     <div>
-        <button  class="btn btn-sm btn-dark">
+        <button class="btn btn-sm btn-dark">
 
             <a href="/profile/{{user._id}}/edit"> editar Perfil</a>
 
         </button>
-        
-    </div>
 
+    </div>
     <div>
         <form action="/profile/{{user._id}}/delete" method="POST">
             <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
         </form>
 
     </div>
+    {{#if isLeader}}
+    <li class="nav-item">
+        <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
+    </li>
+    {{/if }}
+
+    {{#if errorMessage}}
+    <div id="error">{{errorMessage}}</div>
+    {{/if}}
 
 </div>

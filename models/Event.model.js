@@ -22,7 +22,6 @@ const eventSchema = new Schema(
             type: String,
             default: "URL", //----- some URL------//
         },
-
         pokemons: [String],
     },
 

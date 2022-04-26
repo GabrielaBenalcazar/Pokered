@@ -23,4 +23,11 @@ router.get("/pokemons/:name", (req, res, next) => {
         .catch((error) => next(error));
 });
 
+
+
+
+
+
+
+
 module.exports = router;

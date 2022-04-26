@@ -10,4 +10,16 @@ const isLoggedOut = (req, res, next) => {
     req.session.currentUser ? res.redirect("/") : next();
 };
 
-module.exports = { isLoggedIn, isLoggedOut };
+
+
+const checkRole = (...rolesToCheck) => (req, res, next) => {
+    if (rolesToCheck.includes(req.session.currentUser.role)) {
+        next()
+    } else {
+        res.render('user/profile', { errorMessage: 'No tienes permisos' })
+    }
+}
+
+
+
+module.exports = { isLoggedIn, isLoggedOut, checkRole };

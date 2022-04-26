@@ -1,7 +1,5 @@
 # POKERED
-
 #End Points
-
 | METHOD   |      URL      |  DESCRIPTION|
 |----------|:-------------:|------:      |
 | GET      |  /register    | Retrieve register form |
