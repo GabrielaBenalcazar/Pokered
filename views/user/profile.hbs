@@ -8,21 +8,42 @@
     <div>
         <h3> TUS POKEMONS </h3>
         <ul>
-
             {{#each user.pokemons}}
-
                 <li>
-                    <h5>{{this}}</h5>
-                </li>
+                    <a href="/pokemons/{{this}}">{{this}}</a>
 
+                </li>
             {{/each}}
 
         </ul>
     </div>
 
     <div>
-        <h3> TUS EVENTOS </h3>
-        {{user.events}}
+        <divv class="row">
+            <h3> TUS EVENTOS </h3>
+
+            {{#each events}}
+                <div class="col-md-4 mb-5">
+                    <div class="card" style="width: 18rem;">
+                        <img src="..." class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title">NAME: {{name}}</h5>
+                            <p class="card-text">DETAILS: {{details}}</p>
+                            <p class="card-text">DATE: {{date}}</p>
+                            <p class="card-text">LOCATION: {{location}}</p>
+
+                            {{#each pokemons}}
+
+                                <a href="/pokemons/{{this}}">{{this}}</a>
+
+                            {{/each}}
+                        </div>
+
+                    </div>
+                </div>
+            {{/each}}
+        </divv>
+
     </div>
 
     <div>
@@ -38,11 +59,15 @@
         </form>
 
     </div>
-    {{#if isLeader}}
-        <li class="nav-item">
-            <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
-        </li>
-    {{/if}}
+    <div>
+
+        {{#if isLeader}}
+            <li class="nav-item">
+                <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
+            </li>
+        {{/if}}
+
+    </div>
 
     {{#if errorMessage}}
         <div id="error">{{errorMessage}}</div>

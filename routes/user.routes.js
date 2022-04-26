@@ -10,17 +10,18 @@ const { checkRole } = require("./../middleware/route-guard");
 ///profile User
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
-    const isLeader = req.session.currentUser.role === 'LEADER'
-    const user = req.session.currentUser
+    const isLeader = req.session.currentUser.role === "LEADER";
+    const id = req.session.currentUser._id;
 
-    // user.find({ pokemons: 1 })
-    // then
-
-
-
-    res.render("user/profile", { user , isLeader,  });
+    User.findById(id)
+        .then((user) => {
+            Event.find({ participants: id })
+                .then((events) => {
+                res.render("user/profile", { user, isLeader, events });
+            });
+        })
+        .catch((error) => next(error));
 });
-
 
 ///EDIT PROFILE
 router.get("/profile/:id/edit", isLoggedIn, (req, res, next) => {
@@ -33,39 +34,37 @@ router.post("/profile/:id/edit", isLoggedIn, (req, res, next) => {
 
     console.log({ username, email, password, img }, id);
 
-    User
-        .findByIdAndUpdate(id, { username, email, password, img })
+    User.findByIdAndUpdate(id, { username, email, password, img })
         .then(() => {
             res.redirect("/profile");
-        });
+        })
+        .catch((error) => next(error));
 });
-
 
 ///DELETE USER
 router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
-    User
-        .findByIdAndDelete(id)
+    User.findByIdAndDelete(id)
         .then(() => {
             res.redirect("/register");
-        });
+        })
+        .catch((error) => next(error));
 });
-
 
 ////GYM LEADER and ADMIN ONLY
-router.get("/profile/gym", isLoggedIn, checkRole('ADMIN', 'LEADER'), (req, res, next) => {
-    id = req.session.currentUser._id
+router.get(
+    "/profile/gym",
+    isLoggedIn,
+    checkRole("ADMIN", "LEADER"),
+    (req, res, next) => {
+        id = req.session.currentUser._id;
 
-
-    Event
-        .find({ leader: id })
-        .then(allEvent => {
-            res.render('user/gym', {allEvent})
-        })
-        .catch(err => err)
-
-
-
-});
+        Event.find({ leader: id })
+            .then((allEvent) => {
+                res.render("user/gym", { allEvent });
+            })
+            .catch((error) => next(error));
+    }
+);
 module.exports = router;

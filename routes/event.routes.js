@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Event = require("./../models/Event.model");
+const User = require("../models/User.model");
 
 const ApiService = require("./../service/poke.api.service");
 
@@ -26,13 +27,8 @@ router.get("/events/create", checkRole("ADMIN", "LEADER"), (req, res, next) => {
 });
 
 router.post("/events/create", isLoggedIn, (req, res, next) => {
-
-
-
-    const leader = req.session.currentUser._id
-
+    const leader = req.session.currentUser._id;
     const { name, details, location, date, pokemon1, pokemon2 } = req.body;
-
     let pokemons = [pokemon1, pokemon2];
 
     Event.create({ name, details, location, date, leader, pokemons })
@@ -72,21 +68,23 @@ router.post("/events/:id/delete", (req, res, next) => {
         .catch((error) => next(error));
 });
 
+///METER PARTICIPANTES EN EVENTOS
 
 router.post("/profile/:id", (req, res, next) => {
+    const user = req.session.currentUser._id;
+    const { id } = req.params;
+    Event.findByIdAndUpdate(id, { $addToSet: { participants: user } })
+        .then((event) => {
+            const pokemons = event.pokemons;
 
-    const user = req.session.currentUser._id
-    const { id } = req.params
-    Event
-        .findByIdAndUpdate(id, { $addToSet: { participants: user } })
-        .then(lastEvent => {
-            res.redirect('/profile')
+            return User.findByIdAndUpdate(user, {
+                $addToSet: { pokemons: pokemons },
+            });
         })
-        .catch((err) => console.log(`dando error${err}`));
+        .then(() => {
+            res.redirect("/profile");
+        })
+        .catch((error) => next(error));
 });
-
-
-
-
 
 module.exports = router;
