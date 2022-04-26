@@ -10,8 +10,14 @@ const { checkRole } = require("./../middleware/route-guard");
 
 router.get("/profile", isLoggedIn, (req, res, next) => {
     const isLeader = req.session.currentUser.role === 'LEADER'
+    const user = req.session.currentUser
 
-    res.render("user/profile", { user: req.session.currentUser, isLeader });
+    // user.find({ pokemons: 1 })
+    // then
+
+
+
+    res.render("user/profile", { user , isLeader,  });
 });
 
 

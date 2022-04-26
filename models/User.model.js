@@ -27,7 +27,11 @@ const userSchema = new Schema(
             type: String,
             default: "URL", //----- some URL------//
         },
-        pokemons: [String],
+        pokemons: {
+            type: [String],
+            default: ["bulbasaur", "carmander", "squirtle"],
+        },
+
         events: [
             {
                 type: Schema.Types.ObjectId,
@@ -40,5 +44,7 @@ const userSchema = new Schema(
     }
 );
 const User = model("User", userSchema);
+
+User.syncIndexes();
 
 module.exports = User;

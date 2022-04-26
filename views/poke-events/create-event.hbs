@@ -2,25 +2,73 @@
     <div class="row justify-content-center">
         <div class="col-md-5">
             <h1>Create Events</h1>
-            <hr>
+            <hr />
             <form action="/events/create" method="POST">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre de evento</label>
-                    <input type="text" class="form-control" id="name" name="name" />
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                    />
                     <div class="form-text">Se verá públicamente</div>
                 </div>
                 <div class="mb-3">
                     <label for="details" class="form-label">Detalles</label>
-                    <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                    <textarea
+                        class="form-control"
+                        id="details"
+                        name="details"
+                        rows="3"
+                    ></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="location" class="form-label">Localización</label>
-                    <input type="text" class="form-control" id="location" name="location" />
+                    <label
+                        for="location"
+                        class="form-label"
+                    >Localización</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="location"
+                        name="location"
+                    />
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Fecha</label>
-                    <input type="date" class="form-control" id="date" name="date" />
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="date"
+                        name="date"
+                    />
                 </div>
+
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="pokemon1">pokemon 1</label>
+                    <select class="form-select" id="pokemon1" name="pokemon1">
+                        <option selected>Choose...</option>
+                        {{#each pokemons}}
+
+                            <option value="{{name}}">{{name}}</option>
+
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="pokemon2">pokemon 2</label>
+                    <select class="form-select" id="pokemon2" name="pokemon2">
+                        <option selected>Choose...</option>
+                        {{#each pokemons}}
+
+                            <option value="{{name}}">{{name}}</option>
+
+                        {{/each}}
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-dark">Crear Evento</button>
             </form>
         </div>
