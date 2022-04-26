@@ -1,4 +1,5 @@
 # POKERED
+
 #End Points
 
 | METHOD   |      URL      |  DESCRIPTION|
@@ -9,7 +10,7 @@
 | POST     |  /login       | Login user             |
 | POST     |  /logout      | Logout user            |
 | GET      |  /pokemon     | Details all pokemons     |
-| GET      |  /pokemon/:id | One pokemon   |
+| GET      |  /pokemon/:name | One pokemon   |
 | GET      |  /profile     | User profile     |
 | GET      |  /profile/edit| Retrieve edit form  |
 | POST     |  /profile/edit| Edit profile User  |

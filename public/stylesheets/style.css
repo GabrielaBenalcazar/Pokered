@@ -20,3 +20,9 @@ h1 {
     background-color: black;
     border: 0px;
 }
+
+figure img{
+    height: 300px;
+    width: 250px;
+
+}
