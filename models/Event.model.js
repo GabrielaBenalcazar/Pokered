@@ -14,7 +14,10 @@ const eventSchema = new Schema(
         location: {
             type: String,
         },
-
+        date: {
+            type: Date,
+            default: Date.now
+        },
         img: {
             type: String,
             default: "URL", //----- some URL------//

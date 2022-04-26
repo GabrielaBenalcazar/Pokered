@@ -20,9 +20,9 @@
 | GET      |  /events/details   | Retrieve event details |
 | GET      |  /events/create    | Retrieve event form | =>///// only for leaders 
 | POST     |  /events/create    | Create event  |
-| GET      |  /events/edit      | Retrieve event form | =>///// only for leaders 
-| POST     |  /events/edit      | Edit event  |
-| POST     |  /events/delete    | Delete event  |
+| GET      |  /events/:id/edit      | Retrieve event form | =>///// only for leaders 
+| POST     |  /events/:id/edit      | Edit event  |
+| POST     |  /events/:id/delete    | Delete event  |
 
 
 

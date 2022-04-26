@@ -6,18 +6,106 @@ class ApiService {
     }
 
 
-    getAllPokemons() {
-        let apiPokem = []
-        for (let i = 1; i < 150; ++i) {
-            apiPokem.push(i)
-        }
-        return apiPokem
-        //this.getAOnePokemon(apiPokem)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    getAllPokemon(id) {
+        this.axiosApp.get(`/pokemon/${id}`)
+            .then(({ data }) => {
+                return data
+                // console.log("DATRAASDFEF:....:", data)
+            })
     }
 
 
-    getAOnePokemon(id) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getOnePokemon(id) {
         return this.axiosApp.get(`/pokemon/${id}`)
     }
 

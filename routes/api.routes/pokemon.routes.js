@@ -6,31 +6,274 @@ const Service = new ApiService
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/pokemons', (req, res, next) => {
+
+//     Service
+//         .getAllPokemons()
+
+//         .then(({ data }) => {
+//             console.log(data)
+//         })
+
+// })
+
+
 router.get('/pokemons', (req, res, next) => {
-    let arr = []
 
-    for (let i = 1; i <= 150; i++) {
-        arr.push(i)
+    let id = []
+    for (let i = 1; i <= 2; ++i) {
+        id += i
     }
-    arr.map(eachPokemon => {
-        console.log(Service.getAOnePokemon(eachPokemon).then(data => console.log(data)))
-    })
 
-    // Service
-    //     .getAllPokemons(arr)
-    //     .then((data) => {
-    //         console.log(data)
-    //         //res.render('pokemon-views/pokemon-list', { pokemons })
-    //     })
-    //     .catch(err => res.send('estoy dando error', err))
+
+    Service
+
+
+        .getAllPokemon(id)
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.log(`soy el error de pokemons ${err}`))
 
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/pokemons', (req, res, next) => {
+//     let arr = []
+
+//     for (let i = 1; i <= 150; i++) {
+//         arr.push(i)
+//     }
+
+//     const promises = arr.map(eachPokemon => {
+//         return Service.getAOnePokemon(eachPokemon)
+//     })
+
+//     Promise
+//         .all(promises)
+//         .then(([pok1, pok2, pok3]) => {
+//             console.log(pok1)
+//             //res.render('pokemon-views/pokemon-list', { pok1, pok2, pok3 })
+//         })
+
+//     // Service
+//     //     .getAllPokemons(arr)
+//     //     .then((data) => {
+//     //         console.log(data)
+//     //         //res.render('pokemon-views/pokemon-list', { pokemons })
+//     //     })
+//     //     .catch(err => res.send('estoy dando error', err))
+
+// })
+
+
+
+
 router.get('/pokemons/:id', (req, res, next) => {
     const { id } = req.params
+
+
+
+
     Service
-        .getAOnePokemon(id)
+        .getOnePokemon(id)
         .then(({ data }) => {
             res.render('pokemon-views/pokemon-details', data)
 
@@ -42,5 +285,4 @@ router.get('/pokemons/:id', (req, res, next) => {
 
 
 
-
-module.exports = router
+module.exports = router;
