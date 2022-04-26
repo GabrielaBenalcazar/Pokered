@@ -7,7 +7,17 @@
     </figure>
     <div>
         <h3> TUS POKEMONS </h3>
-        {{user.pokemons}}
+        <ul>
+
+            {{#each user.pokemons}}
+
+                <li>
+                    <h5>{{this}}</h5>
+                </li>
+
+            {{/each}}
+
+        </ul>
     </div>
 
     <div>
@@ -21,7 +31,6 @@
             <a href="/profile/{{user._id}}/edit"> editar Perfil</a>
 
         </button>
-
     </div>
     <div>
         <form action="/profile/{{user._id}}/delete" method="POST">
@@ -30,13 +39,13 @@
 
     </div>
     {{#if isLeader}}
-    <li class="nav-item">
-        <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
-    </li>
-    {{/if }}
+        <li class="nav-item">
+            <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
+        </li>
+    {{/if}}
 
     {{#if errorMessage}}
-    <div id="error">{{errorMessage}}</div>
+        <div id="error">{{errorMessage}}</div>
     {{/if}}
 
 </div>

@@ -27,13 +27,17 @@ const userSchema = new Schema(
             type: String,
             default: "URL", //----- some URL------//
         },
-        pokemons: [String],
-        
+        pokemons: {
+            type: [String],
+            default: ["bulbasaur", "carmander", "squirtle"],
+        }
     },
     {
         timestamps: true,
     }
 );
 const User = model("User", userSchema);
+
+User.syncIndexes();
 
 module.exports = User;

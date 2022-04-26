@@ -44,4 +44,6 @@ const eventSchema = new Schema(
 
 const Event = model("Event", eventSchema);
 
+Event.syncIndexes();
+
 module.exports = Event;
