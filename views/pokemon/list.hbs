@@ -1,10 +1,35 @@
-<h1>POKEMONS</h1>
-{{#each results}}
+<div class="container">
 
-    <article>
+    <h1>POKEMONS</h1>
 
-        <a href="/pokemons/{{name}}">{{name}}</a>
+    <div class="row">
 
-    </article>
+        {{#each pokemons}}
 
-{{/each}}
+            <div class="col-md-4 mb-5">
+
+                <div class="card" style="width: 18rem;">
+
+                    <figure>
+
+                        <img
+                            src="{{sprites.other.dream_world.front_default}}"
+                            alt="{{name}}"
+                        />
+
+                        <a
+                            href="/pokemons/{{name}}"
+                            class="btn btn-sm btn-dark"
+                        >{{name}}</a>
+
+                    </figure>
+
+                </div>
+
+            </div>
+
+        {{/each}}
+
+    </div>
+
+</div>

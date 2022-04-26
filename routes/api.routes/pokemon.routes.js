@@ -6,10 +6,20 @@ const Service = new ApiService();
 
 router.get("/pokemons", (req, res, next) => {
     Service.getAllPokemons()
-        .then(({ data }) => {
-            console.log(data);
-            res.render("pokemon/list", data);
+        .then((pokemons) => {
+            let arr = [];
+
+            pokemons.forEach((pokemon) => {
+                const { name } = pokemon;
+
+                arr.push(Service.getPokemonByName(name));
+            });
+
+            Promise.all(arr).then((detailedPokemonlist) => {
+                res.render("pokemon/list", { pokemons: detailedPokemonlist });
+            });
         })
+
         .catch((error) => next(error));
 });
 
@@ -17,8 +27,8 @@ router.get("/pokemons/:name", (req, res, next) => {
     const { name } = req.params;
 
     Service.getPokemonByName(name)
-        .then(({ data }) => {
-            res.render("pokemon/details", data);
+        .then((pokemon) => {
+            res.render("pokemon/details", pokemon);
         })
         .catch((error) => next(error));
 });
