@@ -28,12 +28,7 @@ const userSchema = new Schema(
             default: "URL", //----- some URL------//
         },
         pokemons: [String],
-        events: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Event",
-            },
-        ],
+        
     },
     {
         timestamps: true,

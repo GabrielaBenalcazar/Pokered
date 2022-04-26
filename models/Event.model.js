@@ -23,6 +23,18 @@ const eventSchema = new Schema(
             default: "URL", //----- some URL------//
         },
         pokemons: [String],
+
+        leader: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        },
+        participants: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "User",
+            },
+        ],
+
     },
 
     {

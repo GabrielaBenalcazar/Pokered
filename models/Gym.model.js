@@ -26,7 +26,6 @@ const gymSchema = new Schema(
             default: "URL", //----- some URL------//
         },
     },
-
     {
         timestamps: true,
     }

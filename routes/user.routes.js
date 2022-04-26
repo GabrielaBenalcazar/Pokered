@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const User = require("../models/User.model");
+const Event = require("../models/Event.model");
 
 const { isLoggedIn } = require("./../middleware/route-guard");
 
@@ -48,8 +49,17 @@ router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
 
 ////GYM LEADER and ADMIN ONLY
 router.get("/profile/gym", isLoggedIn, checkRole('ADMIN', 'LEADER'), (req, res, next) => {
+    id = req.session.currentUser._id
 
-    res.render('user/gym')
+
+    Event
+        .find({ leader: id })
+        .then(allEvent => {
+            res.render('user/gym', {allEvent})
+        })
+        .catch(err => err)
+
+
 
 });
 module.exports = router;

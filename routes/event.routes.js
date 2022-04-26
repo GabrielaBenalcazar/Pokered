@@ -23,8 +23,14 @@ router.get("/events/create", checkRole('ADMIN', 'LEADER'), (req, res, next) => {
 });
 
 router.post("/events/create", isLoggedIn, (req, res, next) => {
+
+
+
+    const leader = req.session.currentUser._id
+
     const { name, details, location, date } = req.body;
-    Event.create({ name, details, location, date })
+
+    Event.create({ name, details, location, date, leader })
         .then((lastEvent) => {
             res.redirect("/events");
         })
@@ -64,6 +70,23 @@ router.post("/events/:id/delete", (req, res, next) => {
         })
         .catch((err) => console.log(`dando error${err}`));
 });
+
+
+router.post("/profile/:id", (req, res, next) => {
+
+    const user = req.session.currentUser._id
+    const { id } = req.params
+    Event
+        .findByIdAndUpdate(id, { $addToSet: { participants: user } })
+        .then(lastEvent => {
+            res.redirect('/profile')
+        })
+        .catch((err) => console.log(`dando error${err}`));
+});
+
+
+
+
 
 module.exports = router;
 
