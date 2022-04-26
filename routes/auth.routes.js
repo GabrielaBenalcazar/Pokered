@@ -39,16 +39,12 @@ router.post("/login", (req, res, next) => {
     User.findOne({ email })
         .then((user) => {
             if (!user) {
-                res.render("auth.login", {
-                    errorMessage: "Usuario no reconocido",
-                });
+                res.render("auth/login", {errorMessage: "Usuario no reconocido"});
                 return;
             }
 
             if (!bcryptjs.compareSync(plainPassword, user.password)) {
-                res.render("auth/login", {
-                    errorMessage: "Contraseña no válida",
-                });
+                res.render("auth/login", {errorMessage: "Contraseña no válida"});
                 return;
             }
 

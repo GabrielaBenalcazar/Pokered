@@ -4,26 +4,21 @@ class ApiService {
     constructor() {
         this.axiosApp = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
     }
-    //////////////////////////////////////////////////////////7777/////CRISTIAN
-    // getAllPokemon(id) {
-    //     this.axiosApp.get(`/pokemon/${id}`)
-    //         .then(({ data }) => {
-    //             return data
-    //             // console.log("DATRAASDFEF:....:", data)
-    //         })
-    // }
-
-    // getOnePokemon(id) {
-    //     return this.axiosApp.get(`/pokemon/${id}`)
-    // }
-
 
     getAllPokemons() {
-        return this.axiosApp.get("/pokemon?limit=100000&offset=0");
+        return this.axiosApp
+            .get("/pokemon?limit=20&offset=0")
+            .then(({ data }) => {
+                const pokemons = data.results;
+                return pokemons;
+            });
     }
 
     getPokemonByName(name) {
-        return this.axiosApp.get(`/pokemon/${name}`);
+        return this.axiosApp.get(`/pokemon/${name}`).then(({ data }) => {
+            const pokemon = data;
+            return pokemon;
+        });
     }
 }
 
