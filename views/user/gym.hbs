@@ -12,15 +12,10 @@
                     <p class="card-text">DETAILS: {{details}}</p>
                     <p class="card-text">DATE: {{date}}</p>
                     <p class="card-text">LOCATION: {{location}}</p>
-
                     <h6>pokemons en este evento</h6>
-
                     {{#each pokemons}}
-
                     <a href="/pokemons/{{this}}">{{this}}</a>
-
                     {{/each}}
-
                 </div>
                 <form action="/events/{{id}}/edit">
                     <button type="submit" class="btn btn-warning">EDIT</button>
@@ -31,11 +26,8 @@
             </div>
         </div>
         {{/each}}
-
     </divv>
-
 </div>
-
 <li class="nav-item">
     <a class="nav-link" href="/events/create">Create Event</a>
 </li>

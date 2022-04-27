@@ -6,13 +6,13 @@ const saltRounds = 10;
 const User = require("../models/User.model");
 const Event = require("../models/Event.model");
 
-const { isLoggedIn } = require("./../middleware/route-guard");
+const { isLoggedIn, checkRole } = require("./../middleware/route-guard");
 
-const { checkRole } = require("./../middleware/route-guard");
+//PROFILE
 
-///profile User
 
-router.get("/profile", isLoggedIn, (req, res, next) => {
+
+router.get("/", isLoggedIn, (req, res, next) => {
     const isLeader = req.session.currentUser.role === 'LEADER'
     const isAdmin = req.session.currentUser.role === 'ADMIN'
     const user = req.session.currentUser
@@ -22,12 +22,12 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         .then(allEvents => {
             res.render("user/profile", { user, isLeader, allEvents, isAdmin });
         })
-        .catch((error) => next(error))
+        .catch((err) => next(err));
 });
 
 
 
-router.get("/profile/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
     const promise = [User.find({ role: 'TRAINER' }), User.find({ role: 'LEADER' })]
     Promise
         .all(promise)
@@ -38,7 +38,7 @@ router.get("/profile/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => 
 });
 
 ///EDIT PROFILE
-router.get("/profile/:id/edit", isLoggedIn, (req, res, next) => {
+router.get("/:id/edit", isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
     User
@@ -47,53 +47,43 @@ router.get("/profile/:id/edit", isLoggedIn, (req, res, next) => {
             res.render("user/edit", oneUser);
         })
         .catch(err => next(err))
-
-
 });
 
-router.post("/profile/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/:id/edit", isLoggedIn, (req, res, next) => {
     const { username, email, userPassword, img } = req.body;
     const { id } = req.params;
 
-
     bcryptjs
-
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(userPassword, salt))
         .then(hashedPassword => User.findByIdAndUpdate(id, { username, email, password: hashedPassword, img }))
         .then(() => {
             res.redirect("/profile");
         })
-        .catch((error) => next(error));
+        .catch((err) => next(err));
 });
 
+//DELETE USER
 
-
-
-
-///DELETE USER
-router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
+router.post("/:id/delete", isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
     User.findByIdAndDelete(id)
         .then(() => {
             res.redirect("/register");
         })
-        .catch((error) => next(error));
+        .catch((err) => next(err));
 });
 
-////GYM LEADER and ADMIN ONLY
-router.get("/profile/gym", isLoggedIn, checkRole("ADMIN", "LEADER"),
-    (req, res, next) => {
-        id = req.session.currentUser._id;
+//GYM LEADER and ADMIN ONLY
 
-        Event.find({ leader: id })
-            .then((allEvent) => {
-                res.render("user/gym", { allEvent });
-            })
-            .catch((error) => next(error));
-    }
-);
+router.get("/gym", isLoggedIn, checkRole("ADMIN", "LEADER"), (req, res, next) => {
+    id = req.session.currentUser._id;
+
+    Event.find({ leader: id })
+        .then((allEvent) => {
+            res.render("user/gym", { allEvent });
+        })
+        .catch((err) => next(err));
+});
 module.exports = router;
-
-

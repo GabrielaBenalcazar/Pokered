@@ -7,7 +7,7 @@
 | GET      |  /login       | Retrieve  login form   |
 | POST     |  /login       | Login user             |
 | POST     |  /logout      | Logout user            |
-| GET      |  /pokemon     | Details all pokemons     |
+| GET      |  /pokemon      | Details all pokemons     |
 | GET      |  /pokemon/:name | One pokemon   |
 | GET      |  /profile     | User profile     |
 | GET      |  /profile/edit| Retrieve edit form  |

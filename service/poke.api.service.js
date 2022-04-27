@@ -5,20 +5,24 @@ class ApiService {
         this.axiosApp = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
     }
 
-    getAllPokemons(limit) {
+    getAllPokemons(limit = 20) {
         return this.axiosApp
             .get(`/pokemon?limit=${limit}&offset=0`)
             .then(({ data }) => {
                 const pokemons = data.results;
                 return pokemons;
-            });
+            })
+            .catch((err) => next(err));
     }
 
     getPokemonByName(name) {
-        return this.axiosApp.get(`/pokemon/${name}`).then(({ data }) => {
-            const pokemon = data;
-            return pokemon;
-        });
+        return this.axiosApp
+            .get(`/pokemon/${name}`)
+            .then(({ data }) => {
+                const pokemon = data;
+                return pokemon;
+            })
+            .catch((err) => next(err));
     }
 }
 
