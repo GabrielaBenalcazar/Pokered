@@ -9,7 +9,8 @@ const { isLoggedIn, checkRole } = require("./../middleware/route-guard");
 
 ///////////////////////////LIST EVENTS
 router.get("/events", (req, res, next) => {
-    Event.find()
+    Event
+        .find()
         .then((allEvents) => {
             res.render("./poke-events/list-events", { allEvents });
         })
@@ -73,7 +74,7 @@ router.post("/events/:id/delete", (req, res, next) => {
 });
 
 
-router.post("/profile/:id", (req, res, next) => {
+router.post("/events/:id", (req, res, next) => {
 
     const user = req.session.currentUser._id
     const { id } = req.params
@@ -84,9 +85,4 @@ router.post("/profile/:id", (req, res, next) => {
         })
         .catch((err) => console.log(`dando error${err}`));
 });
-
-
-
-
-
 module.exports = router;

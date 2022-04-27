@@ -12,13 +12,14 @@ const { checkRole } = require("./../middleware/route-guard");
 router.get("/profile", isLoggedIn, (req, res, next) => {
     const isLeader = req.session.currentUser.role === 'LEADER'
     const user = req.session.currentUser
-
-    // user.find({ pokemons: 1 })
-    // then
-
-
-
-    res.render("user/profile", { user , isLeader,  });
+    const { _id } = req.session.currentUser
+    
+    Event
+        .find({ participants: _id })
+        .then(allEvents => {
+            res.render("user/profile", { user, isLeader, allEvents });
+        })
+        .catch(err => err)
 });
 
 
@@ -31,7 +32,6 @@ router.post("/profile/:id/edit", isLoggedIn, (req, res, next) => {
     const { username, email, password, img } = req.body;
     const { id } = req.params;
 
-    console.log({ username, email, password, img }, id);
 
     User
         .findByIdAndUpdate(id, { username, email, password, img })
@@ -55,17 +55,16 @@ router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
 
 ////GYM LEADER and ADMIN ONLY
 router.get("/profile/gym", isLoggedIn, checkRole('ADMIN', 'LEADER'), (req, res, next) => {
-    id = req.session.currentUser._id
 
+    const { id } = req.session.currentUser
 
     Event
         .find({ leader: id })
         .then(allEvent => {
-            res.render('user/gym', {allEvent})
+            res.render('user/gym', { allEvent })
         })
         .catch(err => err)
-
-
-
 });
 module.exports = router;
+
+
