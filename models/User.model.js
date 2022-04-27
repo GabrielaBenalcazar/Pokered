@@ -30,7 +30,7 @@ const userSchema = new Schema(
         pokemons: {
             type: [String],
             default: ["bulbasaur", "carmander", "squirtle"],
-        }
+        },
     },
     {
         timestamps: true,

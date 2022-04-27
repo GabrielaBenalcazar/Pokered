@@ -1,12 +1,13 @@
 const router = require("express").Router();
 
-const bcrypt = require("bcryptjs/dist/bcrypt");
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
 const { isLoggedOut, isLoggedIn } = require("./../middleware/route-guard");
 
 const User = require("../models/User.model");
+
+//REGISTER
 
 router.get("/register", isLoggedOut, (req, res, next) => {
     res.render("auth/register");
@@ -15,29 +16,28 @@ router.get("/register", isLoggedOut, (req, res, next) => {
 router.post("/register", isLoggedOut, (req, res, next) => {
     const { username, email, plainPassword, img } = req.body;
 
-
     if (username.length === 0) {
-        res.render("auth/register", { errorUsername: 'El nombre de usuario es obligatorio' })
-        return
+        res.render("auth/register", { errorUsername: "El nombre de usuario es obligatorio" });
+        return;
     }
     if (email.length === 0) {
-        res.render("auth/register", { errorEmail: 'El email es obligatorio' })
-        return
+        res.render("auth/register", { errorEmail: "El email es obligatorio" });
+        return;
     }
     if (plainPassword.length === 0) {
-        res.render("auth/register", { errorPassword: 'La contraseña es obligatoria' })
-        return
+        res.render("auth/register", { errorPassword: "La contraseña es obligatoria" });
+        return;
     }
 
     bcryptjs
         .genSalt(saltRounds)
         .then((salt) => bcryptjs.hash(plainPassword, salt))
-        .then((hashedPassword) =>
-            User.create({ username, email, password: hashedPassword, img })
-        )
+        .then((hashedPassword) => User.create({ username, email, password: hashedPassword, img }))
         .then(() => res.redirect("/login"))
-        .catch((error) => next(error));
+        .catch((err) => next(err));
 });
+
+//login
 
 router.get("/login", isLoggedOut, (req, res, next) => {
     res.render("auth/login");
@@ -54,7 +54,7 @@ router.post("/login", (req, res, next) => {
     User.findOne({ email })
         .then((user) => {
             if (!user) {
-                res.render("auth/login", {errorMessage: "Usuario no reconocido"});
+                res.render("auth/login", { errorMessage: "Usuario no reconocido" });
                 return;
             }
             if (!bcryptjs.compareSync(plainPassword, user.password)) {
@@ -64,9 +64,8 @@ router.post("/login", (req, res, next) => {
             req.session.currentUser = user;
             res.redirect("/profile");
         })
-        .catch((error) => next(error));
+        .catch((err) => next(err));
 });
-
 
 router.post("/logout", isLoggedIn, (req, res, next) => {
     req.session.destroy(() => res.redirect("/"));

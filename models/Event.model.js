@@ -16,7 +16,7 @@ const eventSchema = new Schema(
         },
         date: {
             type: Date,
-            default: Date.now
+            default: Date.now,
         },
         img: {
             type: String,
@@ -34,7 +34,6 @@ const eventSchema = new Schema(
                 ref: "User",
             },
         ],
-
     },
 
     {

@@ -2,15 +2,40 @@
 
     <h1>soy los detalles de {{name}}</h1>
 
-    <figure>
-        <img
-            src="{{sprites.other.dream_world.front_default}}"
-            alt="image {{name}}"
-        />
+    <div class="row">
 
-    </figure>
-    <div>
-        {{name}}
+        <div class="col-md-6">
+
+            <figure>
+                <img src="{{sprites.other.dream_world.front_default}}" alt="image {{name}}" />
+            </figure>
+
+            <div>
+                <h3>NUMERO: {{id}} </h3>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+            <div>
+
+                <h3>habilities</h3>
+                <ul>
+                    {{#each abilities}}
+                        <li>
+                            {{ability.name}}
+
+                        </li>
+
+                    {{/each}}
+
+                </ul>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
