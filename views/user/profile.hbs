@@ -9,38 +9,37 @@
         <h3> TUS POKEMONS </h3>
         <ul>
             {{#each user.pokemons}}
-                <li>
-                    <a href="/pokemons/{{this}}">{{this}}</a>
+            <li>
+                <a href="/pokemons/{{this}}">{{this}}</a>
 
-                </li>
+            </li>
             {{/each}}
 
         </ul>
     </div>
-
     <div>
         <divv class="row">
             <h3> TUS EVENTOS </h3>
             {{#each allEvents}}
-                <div class="col-md-4 mb-5">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="..." />
-                        <div class="card-body">
-                            <h5 class="card-title">{{name}}</h5>
-                            <p class="card-text">{{details}}</p>
-                            <p class="card-text">{{date}}</p>
-                            <p class="card-text">{{location}}</p>
+            <div class="col-md-4 mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">{{details}}</p>
+                        <p class="card-text">{{date}}</p>
+                        <p class="card-text">{{location}}</p>
 
-                            {{#each pokemons}}
+                        {{#each pokemons}}
 
-                                <a href="/pokemons/{{this}}">{{this}}</a>
+                        <a href="/pokemons/{{this}}">{{this}}</a>
 
-                            {{/each}}
-
-                        </div>
+                        {{/each}}
 
                     </div>
+
                 </div>
+            </div>
             {{/each}}
         </divv>
 
@@ -57,20 +56,24 @@
         <form action="/profile/{{user._id}}/delete" method="POST">
             <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
         </form>
-
     </div>
     <div>
 
         {{#if isLeader}}
-            <li class="nav-item">
-                <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
-            </li>
+        <li class="nav-item">
+            <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
+        </li>
         {{/if}}
 
-    </div>
 
+        {{#if isAdmin}}
+        <li class="nav-item">
+            <a class="btn btn-sm btn-dark" href="/profile/list">Lista de usuarios</a>
+        </li>
+        {{/if}}
+    </div>
     {{#if errorMessage}}
-        <div id="error">{{errorMessage}}</div>
+    <div id="error">{{errorMessage}}</div>
     {{/if}}
 
 </div>

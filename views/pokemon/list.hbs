@@ -6,27 +6,21 @@
 
         {{#each pokemons}}
 
-            <div class="col-md-4 mb-5">
+        <div class="col-md-4 mb-5 ">
 
-                <div class="card" style="width: 18rem;">
+            <div class="card justify-content-center" style="width: 18rem;">
 
-                    <figure>
+                <figure>
 
-                        <img
-                            src="{{sprites.other.dream_world.front_default}}"
-                            alt="{{name}}"
-                        />
+                    <img class="pokeImg" src="{{sprites.other.dream_world.front_default}}" alt="{{name}}" />
 
-                        <a
-                            href="/pokemons/{{name}}"
-                            class="btn btn-sm btn-dark"
-                        >{{name}}</a>
+                    <a href="/pokemons/{{name}}" class="btn btn-sm btn-dark">{{name}}</a>
 
-                    </figure>
-
-                </div>
+                </figure>
 
             </div>
+
+        </div>
 
         {{/each}}
 

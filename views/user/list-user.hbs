@@ -1,0 +1,24 @@
+<h1>Lista de usuarios</h1>
+<h3>Trainer User</h3>
+{{#each trainerUsers}}
+<p>{{username}}</p>
+
+<h3>Leader User</h3>
+{{#each leaderUsers}}
+<p>{{username}}</p>
+{{/each}}
+
+<div>
+    <button class="btn btn-sm btn-dark">
+
+        <a href="/profile/{{_id}}/edit"> editar Perfil</a>
+
+    </button>
+</div>
+<div>
+    <form action="/profile/{{_id}}/delete" method="POST">
+        <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
+    </form>
+
+</div>
+{{/each}}

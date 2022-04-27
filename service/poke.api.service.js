@@ -5,9 +5,9 @@ class ApiService {
         this.axiosApp = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
     }
 
-    getAllPokemons() {
+    getAllPokemons(limit) {
         return this.axiosApp
-            .get("/pokemon?limit=20&offset=0")
+            .get(`/pokemon?limit=${limit}&offset=0`)
             .then(({ data }) => {
                 const pokemons = data.results;
                 return pokemons;

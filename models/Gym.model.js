@@ -20,7 +20,6 @@ const gymSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
-
         img: {
             type: String,
             default: "URL", //----- some URL------//

@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
 
 router.use("/", require("./auth.routes.js"));
 router.use("/", require("./user.routes.js"));
-router.use("/", require("./api.routes/pokemon.routes"));
+router.use("/", require("./pokemon.routes"));
 router.use("/", require("./event.routes"));
 
 

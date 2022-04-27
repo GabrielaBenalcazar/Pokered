@@ -4,45 +4,32 @@
     <divv class="row">
         <h1>Tus eventos</h1>
         {{#each allEvent}}
-            <div class="col-md-6 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">NAME: {{name}}</h5>
-                        <p class="card-text">DETAILS: {{details}}</p>
-                        <p class="card-text">DATE: {{date}}</p>
-                        <p class="card-text">LOCATION: {{location}}</p>
+        <div class="col-md-6 mb-5">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">NAME: {{name}}</h5>
+                    <p class="card-text">DETAILS: {{details}}</p>
+                    <p class="card-text">DATE: {{date}}</p>
+                    <p class="card-text">LOCATION: {{location}}</p>
 
-                        <h6>pokemons en este evento</h6>
+                    <h6>pokemons en este evento</h6>
 
-                        {{#each pokemons}}
+                    {{#each pokemons}}
 
-                            <a href="/pokemons/{{this}}">{{this}}</a>
+                    <a href="/pokemons/{{this}}">{{this}}</a>
 
-                        {{/each}}
+                    {{/each}}
 
-                    </div>
-                    <form action="/events/{{id}}/edit">
-                        <button
-                            type="submit"
-                            class="btn btn-warning"
-                        >EDIT</button>
-                    </form>
-                    <form action="/events/{{id}}/delete" method="POST">
-                        <button
-                            type="submit"
-                            class="btn btn-danger"
-                        >DELETE</button>
-                    </form>
-
-                    <form action="/profile/{{id}}" method="POST">
-                        <button
-                            type="submit"
-                            class="btn btn-danger"
-                        >APUNTARSE</button>
-                    </form>
                 </div>
+                <form action="/events/{{id}}/edit">
+                    <button type="submit" class="btn btn-warning">EDIT</button>
+                </form>
+                <form action="/events/{{id}}/delete" method="POST">
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                </form>
             </div>
+        </div>
         {{/each}}
 
     </divv>

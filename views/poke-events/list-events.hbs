@@ -10,38 +10,18 @@
                     <p class="card-text">DETAILS: {{details}}</p>
                     <p class="card-text">DATE: {{date}}</p>
                     <p class="card-text">LOCATION: {{location}}</p>
-
                     {{#each pokemons}}
-
                     <a href="/pokemons/{{this}}">{{this}}</a>
-
-                        {{/each}}
-                    </div>
-                    <form action="/events/{{id}}/edit">
-                        <button
-                            type="submit"
-                            class="btn btn-warning"
-                        >EDIT</button>
-                    </form>
-                    <form action="/events/{{id}}/delete" method="POST">
-                        <button
-                            type="submit"
-                            class="btn btn-danger"
-                        >DELETE</button>
-                    </form>
-
-                    <form action="/events/{{id}}" method="POST">
-                        <button
-                            type="submit"
-                            class="btn btn-danger"
-                        >APUNTARSE</button>
-                    </form>
+                    {{/each}}
                 </div>
-                
+                <form action="/events/{{id}}" method="POST">
+                    <button type="submit" class="btn btn-danger">APUNTARSE</button>
+                </form>
             </div>
         </div>
-        {{/each}}
+</div>
+{{/each}}
 
-    </divv>
+</divv>
 
 </div>
