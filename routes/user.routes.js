@@ -19,9 +19,8 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
         .then(allEvents => {
             res.render("user/profile", { user, isLeader, allEvents });
         })
-        .catch(err => err)
+        .catch((error) => next(error))
 });
-
 
 ///EDIT PROFILE
 router.get("/profile/:id/edit", isLoggedIn, (req, res, next) => {
@@ -33,38 +32,36 @@ router.post("/profile/:id/edit", isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
 
-    User
-        .findByIdAndUpdate(id, { username, email, password, img })
+    User.findByIdAndUpdate(id, { username, email, password, img })
         .then(() => {
             res.redirect("/profile");
-        });
+        })
+        .catch((error) => next(error));
 });
-
 
 ///DELETE USER
 router.post("/profile/:id/delete", isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
-    User
-        .findByIdAndDelete(id)
+    User.findByIdAndDelete(id)
         .then(() => {
             res.redirect("/register");
-        });
+        })
+        .catch((error) => next(error));
 });
-
 
 ////GYM LEADER and ADMIN ONLY
-router.get("/profile/gym", isLoggedIn, checkRole('ADMIN', 'LEADER'), (req, res, next) => {
+router.get("/profile/gym", isLoggedIn, checkRole("ADMIN", "LEADER"),
+    (req, res, next) => {
+        id = req.session.currentUser._id;
 
-    const { id } = req.session.currentUser
-
-    Event
-        .find({ leader: id })
-        .then(allEvent => {
-            res.render('user/gym', { allEvent })
-        })
-        .catch(err => err)
-});
+        Event.find({ leader: id })
+            .then((allEvent) => {
+                res.render("user/gym", { allEvent });
+            })
+            .catch((error) => next(error));
+    }
+);
 module.exports = router;
 
 
