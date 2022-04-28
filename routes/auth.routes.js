@@ -1,12 +1,16 @@
 const router = require("express").Router();
 const fileUploader = require("./../config/cloudinary.config")
 
+const mongoose = require("mongoose");
+
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
 const { isLoggedOut, isLoggedIn } = require("./../middleware/route-guard");
 
 const User = require("../models/User.model");
+
+const { formatError } = require("../utils/err");
 
 //REGISTER
 
@@ -35,7 +39,11 @@ router.post("/register", fileUploader.single('imgFile'), isLoggedOut, (req, res,
         .then((salt) => bcryptjs.hash(plainPassword, salt))
         .then((hashedPassword) => User.create({ username, email, password: hashedPassword, img: path }))
         .then(() => res.redirect("/login"))
-        .catch((err) => next(err));
+        .catch((err) => {
+            err instanceof mongoose.Error.ValidationError
+                ? res.render("auth/register", { errorMessage: formatError(err) })
+                : next(err);
+        });
 });
 
 //login
@@ -73,3 +81,12 @@ router.post("/logout", isLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+array.forEach(element => {
+    
+});

@@ -4,7 +4,8 @@ const ApiService = require("../service/poke.api.service");
 const Service = new ApiService();
 
 router.get("/", (req, res, next) => {
-    Service.getAllPokemons(14)
+    Service.getAllPokemons(25)
+
         .then((pokemons) => {
             let arr = [];
             pokemons.forEach((pokemon) => {

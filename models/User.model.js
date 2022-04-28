@@ -5,12 +5,12 @@ const userSchema = new Schema(
         username: {
             type: String,
             trim: true,
-            required: true,
+            required: [true, "El nombre de usuario es obligatorio"],
             minlength: 3,
         },
         email: {
             type: String,
-            required: true,
+            required: [true,"El email es obligatorio" ],
             unique: true,
             lowercase: true,
             trim: true,

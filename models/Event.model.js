@@ -5,11 +5,11 @@ const eventSchema = new Schema(
         name: {
             type: String,
             trim: true,
-            required: true,
+            required: [true, "El nombre de evento es obligatorio"],
         },
         details: {
             type: String,
-            required: true,
+            required: [true, "Los detalles del evento son obligatorios"],
         },
         location: {
             type: String,
