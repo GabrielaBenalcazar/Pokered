@@ -1,22 +1,13 @@
 img {
     width: 100%;
 }
-.navbar-brand{
-    font-family: 'Bebas Neue', cursive;
+.navbar-brand {
+    font-family: "Bebas Neue", cursive;
     font-size: 30;
-
-    
-    
 }
 a.navbar-brand {
-
     color: rgb(255, 211, 53);
-
 }
-
-
-
-
 
 a {
     text-decoration: none;
@@ -79,6 +70,8 @@ figure img {
     padding-bottom: 30px;
 }
 
+/* //fondos  */
+
 .profileGyms {
     background-color: aquamarine;
 }
@@ -91,7 +84,7 @@ figure img {
     background-color: rgb(51, 51, 51);
 }
 
-.profileHeader {    
+.profileHeader {
     background-image: url("../images/fondoPerfil.png");
     background-size: cover;
 }
@@ -103,6 +96,8 @@ figure img {
 .pokemonCard {
     background-color: rgb(170, 170, 170);
 }
+
+/* //cartaspokemon */
 
 .pokemonCard img {
     width: 120px;
@@ -118,8 +113,7 @@ figure img {
     display: block;
 }
 
-.profileImage img
-{
+.profileImage img {
     width: 370px;
     height: 450px;
 }
