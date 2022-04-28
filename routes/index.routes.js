@@ -8,6 +8,6 @@ router.use("/", require("./auth.routes.js"));
 router.use("/profile", require("./user.routes.js"));
 router.use("/pokemons", require("./pokemon.routes"));
 router.use("/events", require("./event.routes"));
-router.use("/profile", require("./gym.routes"));
+router.use("/profile/gym", require("./gym.routes"));
 
 module.exports = router;
