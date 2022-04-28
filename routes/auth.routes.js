@@ -21,19 +21,10 @@ router.get("/register", isLoggedOut, (req, res, next) => {
 router.post("/register", fileUploader.single('imgFile'), isLoggedOut, (req, res, next) => {
     const { username, email, plainPassword, img } = req.body;
     const { path } = req.file
-    if (username.length === 0) {
-        res.render("auth/register", { errorUsername: "El nombre de usuario es obligatorio" });
-        return;
-    }
-    if (email.length === 0) {
-        res.render("auth/register", { errorEmail: "El email es obligatorio" });
-        return;
-    }
     if (plainPassword.length === 0) {
         res.render("auth/register", { errorPassword: "La contraseña es obligatoria" });
         return;
     }
-
     bcryptjs
         .genSalt(saltRounds)
         .then((salt) => bcryptjs.hash(plainPassword, salt))
@@ -84,9 +75,3 @@ module.exports = router;
 
 
 
-
-
-
-array.forEach(element => {
-    
-});

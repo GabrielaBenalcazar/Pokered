@@ -24,7 +24,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="img" class="form-label">Img URL</label>
-                    <input type="file" class="form-control" id="img" name="imgFile" />
+                    <input type="file" class="form-control" id="img" name="imgFile" value="img" />
                     <div class="form-text">Se verá públicamente</div>
                 </div>
                 <div class="mb-3">
@@ -35,7 +35,7 @@
                     {{/if}}
 
                     {{#if errorMessage}}
-                        <div id="error">{{{errorMessage}}}</div>
+                    <div id="error">{{{errorMessage}}}</div>
                     {{/if}}
                 </div>
 

@@ -81,13 +81,46 @@ router.post("/:id", (req, res, next) => {
     const { id } = req.params;
     Event.findByIdAndUpdate(id, { $addToSet: { participants: user } })
         .then((event) => {
-            const { pokemons } = event;
-            return User.findByIdAndUpdate(user, { $addToSet: { pokemons } });
-        })
-        .then(() => {
             res.redirect("/profile");
         })
         .catch((err) => next(err));
 });
+
+
+////dar pokemons por LEADER
+
+router.get("/:id", (req, res, next) => {
+    const { id } = req.params;
+    Event
+        .findById(id)
+        .populate('participants')
+        .then((event) => {
+            res.render("./poke-events/event-details", event);
+        })
+        .catch((err) => next(err));
+});
+
+
+
+router.post("/:idEvent/give-pokemons/:idUser", (req, res, next) => {
+
+    const { idUser } = req.params;
+    const { idEvent } = req.params;
+
+    Event
+        .findById(idEvent)
+        .then(event => {
+
+
+            const { pokemons } = event
+            return User.findByIdAndUpdate(idUser, { $addToSet: { pokemons } });
+        })
+        .then(() => {
+            res.redirect("/profile")
+        })
+        .catch((err) => next(err));
+});
+
+
 
 module.exports = router;

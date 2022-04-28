@@ -1,24 +1,77 @@
-<h1>Lista de usuarios</h1>
-<h3>Trainer User</h3>
-{{#each trainerUsers}}
-<p>{{username}}</p>
+<div class="container">
+    <h1>Lista de usuarios</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Trainers</h3>
 
-<h3>Leader User</h3>
-{{#each leaderUsers}}
-<p>{{username}}</p>
-{{/each}}
+            {{#each trainerUsers}}
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{img}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Trainer</h5>
+                            <p class="card-text">{{username}}.</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-sm btn-dark">
+                                        <a href="/profile/{{_id}}/edit"> editar Perfil</a>
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/profile/{{_id}}/delete" method="POST">
+                                        <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/profile/list/{{id}}/editToLeader" method="POST">
+                                        <button class="btn btn-sm btn-dark" type="submit">Leader</button>
+                                    </form>
+                                </div>
+                            </div>
 
-<div>
-    <button class="btn btn-sm btn-dark">
-
-        <a href="/profile/{{_id}}/edit"> editar Perfil</a>
-
-    </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-md-6">
+            <h3>Leader User</h3>
+            {{#each leaderUsers}}
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{img}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Trainer</h5>
+                            <p class="card-text">{{username}}.</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-sm btn-dark">
+                                        <a href="/profile/{{_id}}/edit"> editar Perfil</a>
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/profile/{{_id}}/delete" method="POST">
+                                        <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <form action="/profile/list/{{id}}/editToTranier" method="POST">
+                                        <button class="btn btn-sm btn-dark" type="submit">Trainer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
 </div>
-<div>
-    <form action="/profile/{{_id}}/delete" method="POST">
-        <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
-    </form>
-
-</div>
-{{/each}}

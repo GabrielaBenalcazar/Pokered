@@ -17,15 +17,17 @@ router.get("/", isLoggedIn, (req, res, next) => {
     const user = req.session.currentUser
     const { _id } = req.session.currentUser
 
-    const promise = [Event.find({ participants: _id }), Gym.find().populate('leader')]
+    const eventsGymsPrm = [Event.find({ participants: _id }), Gym.find().populate('leader')]
     Promise
-        .all(promise)
+        .all(eventsGymsPrm)
         .then(([allEvents, allGyms]) => {
             res.render("user/profile", { user, isLeader, allEvents, isAdmin, allGyms });
         })
         .catch((err) => next(err));
 });
 
+
+///List Users
 router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
     const promise = [User.find({ role: 'TRAINER' }), User.find({ role: 'LEADER' })]
     Promise
@@ -35,6 +37,28 @@ router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
         })
         .catch(err => next(err))
 });
+////EDIT TO LEADER
+
+router.post('/list/:id/editToLeader', (req, res, next) => {
+    const { id } = req.params
+    User
+        .findByIdAndUpdate(id, { role: 'LEADER' })
+        .then(toLeader => {
+            res.redirect('/profile/list')
+        })
+        .catch(err => next(err))
+})
+////EDIT TO TRAINER
+
+router.post('/list/:id/editToTranier', (req, res, next) => {
+    const { id } = req.params
+    User
+        .findByIdAndUpdate(id, { role: 'TRAINER' })
+        .then(toLeader => {
+            res.redirect('/profile/list')
+        })
+        .catch(err => next(err))
+})
 
 ///EDIT PROFILE
 router.get("/:id/edit", isLoggedIn, (req, res, next) => {
@@ -87,4 +111,6 @@ router.get("/gym", isLoggedIn, checkRole("ADMIN", "LEADER"), (req, res, next) =>
         })
         .catch((err) => next(err));
 });
+
+
 module.exports = router;

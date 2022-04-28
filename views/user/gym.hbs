@@ -6,7 +6,7 @@
         {{#each allEvent}}
         <div class="col-md-6 mb-5">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..." />
+                <img src="{{img}}" class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">NAME: {{name}}</h5>
                     <p class="card-text">DETAILS: {{details}}</p>
@@ -20,9 +20,14 @@
                 <form action="/events/{{id}}/edit">
                     <button type="submit" class="btn btn-warning">EDIT</button>
                 </form>
+                <button type="button" class="btn btn-danger">
+                    <a href="/events/{{id}}">DETALLES</a>
+                </button>
+
                 <form action="/events/{{id}}/delete" method="POST">
                     <button type="submit" class="btn btn-danger">DELETE</button>
                 </form>
+
             </div>
         </div>
         {{/each}}

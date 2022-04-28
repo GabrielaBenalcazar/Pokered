@@ -10,7 +10,7 @@ const userSchema = new Schema(
         },
         email: {
             type: String,
-            required: [true,"El email es obligatorio" ],
+            required: [true, "El email es obligatorio"],
             unique: true,
             lowercase: true,
             trim: true,
@@ -25,7 +25,7 @@ const userSchema = new Schema(
         },
         img: {
             type: String,
-            default: "URL", //----- some URL------//
+            default: "https://i.stack.imgur.com/34AD2.jpg",
         },
         pokemons: {
             type: [String],
