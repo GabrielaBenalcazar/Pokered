@@ -12,7 +12,7 @@ class ApiService {
                 const pokemons = data.results;
                 return pokemons;
             })
-            .catch((err) => next(err));
+            .catch((err) => console.log(err));
     }
 
     getPokemonByName(name) {
@@ -22,7 +22,7 @@ class ApiService {
                 const pokemon = data;
                 return pokemon;
             })
-            .catch((err) => next(err));
+            .catch((err) => console.log(err));
     }
 }
 

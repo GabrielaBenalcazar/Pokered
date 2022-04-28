@@ -1,114 +1,205 @@
-<div class="general-profile">
-    <div class="row button-admin">
-        {{#if isAdmin}}
-        <div class="col-md-8 ">
-        </div>
-        <div class="col-md-4 buttons-Admin">
-            <li class="nav-item">
-                <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-sm btn-dark" href="/profile/list">Lista de usuarios</a>
-            </li>
-            <li class="nav-item">
-                <a class="btn btn-sm btn-dark" href="/profile/create-gym ">Crear nuevo Gimnasio</a>
-            </li>
-        </div>
-    </div>
-    {{/if}}
-
-    <div class="row">
-        <div class="col-md-3">
-            <figure>
-                <img src="{{user.img}}" alt="foto de {{user.username}} " />
-            </figure>
-            <div class="row">
-                <div class="col-md-6">
-                    <div>
-                        <button class="btn btn-sm btn-dark">
-                            <a href="/profile/{{user._id}}/edit"> editar Perfil</a>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-6 ali">
-                    <div>
-                        <form action="/profile/{{user._id}}/delete" method="POST">
-                            <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <h1>Bienvenido, {{user.username}}</h1>
-            <div class="row">
-                <h3> TUS EVENTOS </h3>
-                {{#each allEvents}}
-                <div class="col-md-6 mt-2">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{img}}" class="card-img-top" alt="imagen pokemos" />
-                        <div class="card-body">
-                            <h5 class="card-title">{{name}}</h5>
-                            <p class="card-text">{{details}}</p>
-                            <p class="card-text">{{date}}</p>
-                            <p class="card-text">{{location}}</p>
-                            {{#each pokemons}}
-                            <a href="/pokemons/{{this}}">{{this}}</a>
-                            {{/each}}
-                        </div>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div>
-                <h2> TUS POKEMONS </h2>
-                <ul>
-                    {{#each user.pokemons}}
-                    <li>
-                        <a href="/pokemons/{{this}}">{{this}}</a>
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
-            {{#if isAdmin}}
-            <h3> Gimnasios </h3>
-            {{#each allGyms}}
-            <div class="col mt-2">
-                <div class="card" style="width: 18rem;">
-                    <img src={{img}} class="card-img-top" alt="..." />
-                    <div class="card-body">
-                        <h5 class="card-title">{{name}}</h5>
-                        <p class="card-text">{{leader.username}}</p>
-                        <p class="card-text">{{location}}</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button class="btn btn-sm btn-dark">
-                                    <a href="/profile/{{_id}}/edit-gym"> Editar</a>
-                                </button>
-                            </div>
-                            <div class="col-md-6">
-                                <form action="/profile/{{_id}}/delete" method="POST">
-                                    <button class="btn btn-sm btn-dark" type="submit">Eliminar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-            {{/if}}
-        </div>
-    </div>
-    <div>
-        {{#if isLeader}}
-        <li class="nav-item">
-            <a class="btn btn-sm btn-dark" href="/profile/gym ">Tu PokeGym</a>
-        </li>
-        {{/if}}
-    </div>
-    {{#if errorMessage}}
+{{#if errorMessage}}
     <div id="error">{{errorMessage}}</div>
-    {{/if}}
-</div>
+{{/if}}
+
+<header class=" profileHeader">
+    <div class="container">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Bienvenido,<span
+                            class="capitaliced"
+                        >{{user.username}}</span></h1>
+                    <div
+                        class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start"
+                    >
+
+                        {{#if isLeader}}
+                            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/profile/gym">Tu
+                                PokeGym</a>
+                        {{/if}}
+
+                        <a
+                            class="btn btn-light btn-sm px-4 me-sm-3"
+                            href="/profile/{{user._id}}/edit"
+                        >Editar Perfil</a>
+                        <a
+                            class="btn btn-danger btn-sm px-4"
+                            href="/profile/{{user._id}}/delete"
+                        >Eliminar Perfil</a>
+
+                    </div>
+
+                    <div>
+                        <hr />
+                    </div>
+                    <div
+                        class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start"
+                    >
+
+                        {{#if isAdmin}}
+
+                            {{#if isLeader}}
+
+                                <a
+                                    class="btn btn-outline-light btn-md px-4 me-sm-3"
+                                    href="/profile/gym "
+                                >Tu PokeGym</a>
+
+                            {{/if}}
+                            <a
+                                class="btn btn-outline-light btn-md px-4 me-sm-3"
+                                href="/profile/list"
+                            >Lista de usuarios</a>
+                            <a
+                                class="btn btn-outline-light btn-md px-4 me-sm-3"
+                                href="/profile/gym/create "
+                            >Crear nuevo Gimnasio</a>
+
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img
+                    class="img-fluid rounded-3 my-5"
+                    src="{{user.img}}"
+                    alt="foto de {{user.username}}"
+                /></div>
+        </div>
+    </div>
+</header>
+
+{{#if isAdmin}}
+
+    <section class="profileGyms pt">
+        <div class="container px-4 px-lg-5">
+            <h2> TUS GIMNASIOS</h2>
+            <div
+                class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center"
+            >
+                {{#each viewInfo.allGyms}}
+
+                    <div class="col mb-5">
+                        <div class="card h-80">
+                            <!-- Product image-->
+                            <img src="{{img}}" alt="imagen gimnasio pokemon " />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+
+                                    <article>
+
+                                        <h5 class="card-title">{{name}}</h5>
+                                        <p class="card-text">{{leader.username}}</p>
+                                        <p class="card-text">{{location}}</p>
+
+                                    </article>
+
+                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start" >
+
+                                       
+                                        <a class="btn btn-outline-dark btn-md px-4 me-sm-3"  href="/profile/gym/{{_id}}/edit"> Editar</a>
+
+
+                                        <form action="/profile/gym/{{_id}}/delete" method="POST">
+                                            <button
+                                                class="btn btn-md btn-dark"
+                                                type="submit"
+                                            >Eliminar</button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+
+                        </div>
+                    </div>
+
+                {{/each}}
+
+            </div>
+        </div>
+    </section>
+
+{{/if}}
+
+<section class="profilePokemons pt">
+    <div class="container px-4 px-lg-5">
+        <h2> TUS POKEMONS </h2>
+
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-6 justify-content-center">
+
+            {{#each viewInfo.allPokemons}}
+
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+
+                        <div>
+
+                            <img
+                                src="{{sprites.other.dream_world.front_default}}"
+                                alt="image {{name}}"
+                            />
+                        </div>
+
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+
+                                <button class="btn btn-sm btn-dark">
+
+                                    <a href="/pokemons/{{name}}">{{name}}</a>
+
+                                </button>
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+</section>
+
+<section class="profileEvents pt">
+    <div class="container px-4 px-lg-5">
+        <h2> TUS EVENTOS </h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+            {{#each viewInfo.allEvents}}
+
+                <div class="col mb-5">
+                    <div class="card h-80">
+                        <!-- Product image-->
+                        <img src="{{img}}" alt="imagen evento pokemon " />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+
+                                <h5 class="card-title">{{name}}</h5>
+                                <p class="card-text">{{details}}</p>
+                                <p class="card-text">{{date}}</p>
+                                <p class="card-text">{{location}}</p>
+                                {{#each pokemons}}
+                                    <a href="/pokemons/{{this}}">{{this}}</a>
+                                {{/each}}
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+</section>
