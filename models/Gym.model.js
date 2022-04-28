@@ -5,11 +5,11 @@ const gymSchema = new Schema(
         name: {
             type: String,
             trim: true,
-            required: true,
+            required: [true, "El nombre del gimnasio es obligatorio"],
         },
         details: {
             type: String,
-            required: true,
+            required: [true, "Los detalles del gimnasio son obligatorios"],
         },
 
         location: {
@@ -18,7 +18,7 @@ const gymSchema = new Schema(
 
         leader: {
             type: Schema.Types.ObjectId,
-            ref: 'User',
+            ref: "User",
         },
         img: {
             type: String,

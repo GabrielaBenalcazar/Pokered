@@ -1,11 +1,15 @@
 const router = require("express").Router();
 
+const mongoose = require("mongoose");
+
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
 const { isLoggedOut, isLoggedIn } = require("./../middleware/route-guard");
 
 const User = require("../models/User.model");
+
+const { formatError } = require("../utils/err");
 
 //REGISTER
 
@@ -16,14 +20,6 @@ router.get("/register", isLoggedOut, (req, res, next) => {
 router.post("/register", isLoggedOut, (req, res, next) => {
     const { username, email, plainPassword, img } = req.body;
 
-    if (username.length === 0) {
-        res.render("auth/register", { errorUsername: "El nombre de usuario es obligatorio" });
-        return;
-    }
-    if (email.length === 0) {
-        res.render("auth/register", { errorEmail: "El email es obligatorio" });
-        return;
-    }
     if (plainPassword.length === 0) {
         res.render("auth/register", { errorPassword: "La contraseña es obligatoria" });
         return;
@@ -34,7 +30,11 @@ router.post("/register", isLoggedOut, (req, res, next) => {
         .then((salt) => bcryptjs.hash(plainPassword, salt))
         .then((hashedPassword) => User.create({ username, email, password: hashedPassword, img }))
         .then(() => res.redirect("/login"))
-        .catch((err) => next(err));
+        .catch((err) => {
+            err instanceof mongoose.Error.ValidationError
+                ? res.render("auth/register", { errorMessage: formatError(err) })
+                : next(err);
+        });
 });
 
 //login
@@ -72,3 +72,12 @@ router.post("/logout", isLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+array.forEach(element => {
+    
+});

@@ -1,3 +1,27 @@
-<h1>{{appTitle}} 🚀</h1>
-<p>Welcome Ironhacker!</p>
+<div class="container">
+    <div class="row index-container align-items-center justify-content-center">
 
+        <div class="col-md-5">
+
+            <form action="/" method="POST">
+                <div class="input-group flex-nowrap mb-3">
+                    <input
+                        type="pokemonName"
+                        placeholder="pokemonName"
+                        class="form-control"
+                        id="pokemonName"
+                        name="pokemonName"
+                    />
+                    <button type="submit" class="btn btn-dark">YO TE ELIJO</button>
+                </div>
+
+            </form>
+
+            {{#if errorMessage}}
+                <div id="error">{{{errorMessage}}}</div>
+            {{/if}}
+
+        </div>
+
+    </div>
+</div>

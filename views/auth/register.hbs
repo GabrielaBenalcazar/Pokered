@@ -38,6 +38,10 @@
                     {{#if errorPassword}}
                         <div id="error">{{errorPassword}}</div>
                     {{/if}}
+
+                    {{#if errorMessage}}
+                        <div id="error">{{{errorMessage}}}</div>
+                    {{/if}}
                 </div>
 
                 <button type="submit" class="btn btn-dark">Registrarme</button>
