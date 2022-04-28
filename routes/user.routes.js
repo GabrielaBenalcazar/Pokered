@@ -119,9 +119,14 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 
 router.get("/gym", isLoggedIn, checkRole("ADMIN", "LEADER"), (req, res, next) => {
     id = req.session.currentUser._id;
-    Event.find({ leader: id })
-        .then((allEvent) => {
-            res.render("user/gym", { allEvent });
+
+    const eventAndGymsPrm = [Event.find({ leader: id }), Gym.find({ leader: id })]
+
+    Promise
+        .all(eventAndGymsPrm)
+        .then(([allEvent, Gym]) => {
+
+            res.render("user/gym", { allEvent, Gym });
         })
         .catch((err) => next(err));
 });

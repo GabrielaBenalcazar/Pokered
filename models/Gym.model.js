@@ -15,7 +15,6 @@ const gymSchema = new Schema(
         location: {
             type: String,
         },
-
         leader: {
             type: Schema.Types.ObjectId,
             ref: "User",

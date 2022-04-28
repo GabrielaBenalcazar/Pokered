@@ -1,38 +1,54 @@
-<h1>Pagina de gimnasio</h1>
-
+{{#each Gym}}
+<img class="gym-bg" src="{{img}}" alt="imagen del gimnasio">
+{{/each}}
 <div class="container">
+    {{#each Gym}}
+    <h3>{{name}} </h3>
+    <a type="button" class="btn btn-outline-secondary" href="/events/create">Create Event</a>
+    <p></p>
+    {{/each}}
     <divv class="row">
-        <h1>Tus eventos</h1>
         {{#each allEvent}}
         <div class="col-md-6 mb-5">
             <div class="card" style="width: 18rem;">
-                <img src="{{img}}" class="card-img-top" alt="..." />
-                <div class="card-body">
-                    <h5 class="card-title">NAME: {{name}}</h5>
-                    <p class="card-text">DETAILS: {{details}}</p>
-                    <p class="card-text">DATE: {{date}}</p>
-                    <p class="card-text">LOCATION: {{location}}</p>
-                    <h6>pokemons en este evento</h6>
-                    {{#each pokemons}}
-                    <a href="/pokemons/{{this}}">{{this}}</a>
-                    {{/each}}
+                <div class="height-card">
+                    <img src="{{img}}" class="card-img-top" alt="...">
                 </div>
-                <form action="/events/{{id}}/edit">
-                    <button type="submit" class="btn btn-warning">EDIT</button>
-                </form>
-                <button type="button" class="btn btn-danger">
-                    <a href="/events/{{id}}">DETALLES</a>
-                </button>
 
-                <form action="/events/{{id}}/delete" method="POST">
-                    <button type="submit" class="btn btn-danger">DELETE</button>
-                </form>
-
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">{{details}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{date}}</li>
+                    <li class="list-group-item"><strong>{{location}}</strong> </li>
+                    {{#each pokemons}}
+                    <a class="btn btn-outline-dark btn-md m-2" href="/pokemons/{{this}}">{{this}}</a>
+                    {{/each}}
+                </ul>
+                <div class="row button-events-leader">
+                    <div class="col-md-4">
+                        <form action="/events/{{id}}/edit">
+                            <button type="button" class="btn btn-outline-warning btn-sm">EDIT</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form action="/events/{{id}}/delete" method="POST">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="edit-bottom ">
+                            <a class="btn btn-outline-warning btn-sm " href="/events/{{id}}">DETALLES</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         {{/each}}
-    </divv>
 </div>
-<li class="nav-item">
-    <a class="nav-link" href="/events/create">Create Event</a>
-</li>
+
+</div>
+<h5>Dirigido por: <strong>{{name}}</strong> </h5>
+
+</div>
