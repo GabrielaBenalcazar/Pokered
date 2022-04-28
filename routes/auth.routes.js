@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const fileUploader = require("./../config/cloudinary.config")
 
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
@@ -13,9 +14,9 @@ router.get("/register", isLoggedOut, (req, res, next) => {
     res.render("auth/register");
 });
 
-router.post("/register", isLoggedOut, (req, res, next) => {
+router.post("/register", fileUploader.single('imgFile'), isLoggedOut, (req, res, next) => {
     const { username, email, plainPassword, img } = req.body;
-
+    const { path } = req.file
     if (username.length === 0) {
         res.render("auth/register", { errorUsername: "El nombre de usuario es obligatorio" });
         return;
@@ -32,7 +33,7 @@ router.post("/register", isLoggedOut, (req, res, next) => {
     bcryptjs
         .genSalt(saltRounds)
         .then((salt) => bcryptjs.hash(plainPassword, salt))
-        .then((hashedPassword) => User.create({ username, email, password: hashedPassword, img }))
+        .then((hashedPassword) => User.create({ username, email, password: hashedPassword, img: path }))
         .then(() => res.redirect("/login"))
         .catch((err) => next(err));
 });

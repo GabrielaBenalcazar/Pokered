@@ -1,12 +1,12 @@
 <div class="container">
-    <divv class="row">
+    <div class="row">
         <h1>events</h1>
         {{#each allEvents}}
         <div class="col-md-6 mb-5">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="..." />
+                <img src="{{img}}" class="card-img-top" alt="..." />
                 <div class="card-body">
-                    <h5 class="card-title">NAME: {{name}}</h5>
+                    <h5 class="card-title"> {{name}}</h5>
                     <p class="card-text">DETAILS: {{details}}</p>
                     <p class="card-text">DATE: {{date}}</p>
                     <p class="card-text">LOCATION: {{location}}</p>
@@ -19,9 +19,6 @@
                 </form>
             </div>
         </div>
-</div>
-{{/each}}
-
-</divv>
-
+        {{/each}}
+    </div>
 </div>

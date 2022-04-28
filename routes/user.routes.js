@@ -1,31 +1,30 @@
 const router = require("express").Router();
+const fileUploader = require("./../config/cloudinary.config");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 
 const User = require("../models/User.model");
 const Event = require("../models/Event.model");
+const Gym = require("../models/Gym.model");
 
 const { isLoggedIn, checkRole } = require("./../middleware/route-guard");
 
 //PROFILE
-
-
-
 router.get("/", isLoggedIn, (req, res, next) => {
     const isLeader = req.session.currentUser.role === 'LEADER'
     const isAdmin = req.session.currentUser.role === 'ADMIN'
     const user = req.session.currentUser
     const { _id } = req.session.currentUser
-    Event
-        .find({ participants: _id })
-        .then(allEvents => {
-            res.render("user/profile", { user, isLeader, allEvents, isAdmin });
+
+    const promise = [Event.find({ participants: _id }), Gym.find().populate('leader')]
+    Promise
+        .all(promise)
+        .then(([allEvents, allGyms]) => {
+            res.render("user/profile", { user, isLeader, allEvents, isAdmin, allGyms });
         })
         .catch((err) => next(err));
 });
-
-
 
 router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
     const promise = [User.find({ role: 'TRAINER' }), User.find({ role: 'LEADER' })]
@@ -49,14 +48,15 @@ router.get("/:id/edit", isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 });
 
-router.post("/:id/edit", isLoggedIn, (req, res, next) => {
+router.post("/:id/edit", fileUploader.single('imgFile'), isLoggedIn, (req, res, next) => {
     const { username, email, userPassword, img } = req.body;
     const { id } = req.params;
+    const { path } = req.file
 
     bcryptjs
         .genSalt(saltRounds)
         .then(salt => bcryptjs.hash(userPassword, salt))
-        .then(hashedPassword => User.findByIdAndUpdate(id, { username, email, password: hashedPassword, img }))
+        .then(hashedPassword => User.findByIdAndUpdate(id, { username, email, password: hashedPassword, img: path }))
         .then(() => {
             res.redirect("/profile");
         })
@@ -75,11 +75,12 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
         .catch((err) => next(err));
 });
 
-//GYM LEADER and ADMIN ONLY
+
+
+//GYM LEADER 
 
 router.get("/gym", isLoggedIn, checkRole("ADMIN", "LEADER"), (req, res, next) => {
     id = req.session.currentUser._id;
-
     Event.find({ leader: id })
         .then((allEvent) => {
             res.render("user/gym", { allEvent });

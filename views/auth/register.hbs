@@ -4,12 +4,12 @@
         <div class="col-md-5">
             <h1>Registro</h1>
             <hr />
-            <form action="/register" method="POST">
+            <form action="/register" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Dirección de email</label>
                     <input type="email" class="form-control" id="email" name="email" />
                     {{#if errorEmail}}
-                        <div id="error">{{errorEmail}}</div>
+                    <div id="error">{{errorEmail}}</div>
                     {{/if}}
 
                 </div>
@@ -17,26 +17,21 @@
                     <label for="username" class="form-label">Nombre de usuario</label>
                     <input type="text" class="form-control" id="username" name="username" />
                     {{#if errorUsername}}
-                        <div id="error">{{errorUsername}}</div>
+                    <div id="error">{{errorUsername}}</div>
                     {{/if}}
                     <div class="form-text">Se verá públicamente</div>
 
                 </div>
                 <div class="mb-3">
                     <label for="img" class="form-label">Img URL</label>
-                    <input type="text" class="form-control" id="img" name="img" />
+                    <input type="file" class="form-control" id="img" name="imgFile" />
                     <div class="form-text">Se verá públicamente</div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input
-                        type="password"
-                        class="form-control"
-                        id="password"
-                        name="plainPassword"
-                    />
+                    <input type="password" class="form-control" id="password" name="plainPassword" />
                     {{#if errorPassword}}
-                        <div id="error">{{errorPassword}}</div>
+                    <div id="error">{{errorPassword}}</div>
                     {{/if}}
                 </div>
 

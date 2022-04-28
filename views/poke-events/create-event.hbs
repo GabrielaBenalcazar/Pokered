@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <h1>Create Events</h1>
             <hr />
-            <form action="/events/create" method="POST">
+            <form action="/events/create" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nombre de evento</label>
                     <input type="text" class="form-control" id="name" name="name" />
@@ -12,6 +12,10 @@
                 <div class="mb-3">
                     <label for="details" class="form-label">Detalles</label>
                     <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="img" class="form-label">Incluye una imagen</label>
+                    <input type="file" class="form-control" id="img" name="imgFile" />
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Localización</label>
@@ -28,7 +32,7 @@
                         <option selected>Choose...</option>
                         {{#each pokemons}}
 
-                            <option value="{{name}}">{{name}}</option>
+                        <option value="{{name}}">{{name}}</option>
 
                         {{/each}}
                     </select>
@@ -40,7 +44,7 @@
                         <option selected>Choose...</option>
                         {{#each pokemons}}
 
-                            <option value="{{name}}">{{name}}</option>
+                        <option value="{{name}}">{{name}}</option>
 
                         {{/each}}
                     </select>

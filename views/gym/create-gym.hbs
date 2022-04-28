@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1>Crea un nuevo Gimnasio Pokemon</h1>
+            <hr />
+            <form action="/profile/create-gym" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="name" class="form-label"> Gimnasio Pokemon</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="nombre" />
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="leader">Líder de gimnasio</label>
+                    <select class="form-select" id="leader" name="leader">
+                        <option selected>Elige...</option>
+                        {{#each leaderUsers}}
+                        <option value="{{_id}}"> {{username}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="details" class="form-label">Detalles</label>
+                    <textarea class="form-control" id="details" name="details" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="img" class="form-label">Incluye una imagen</label>
+                    <input type="file" class="form-control" id="img" name="imgFile" />
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Localización</label>
+                    <input type="text" class="form-control" id="location" name="location" />
+                </div>
+                <button type="submit" class="btn btn-dark">Crear Evento</button>
+            </form>
+        </div>
+    </div>
+</div>

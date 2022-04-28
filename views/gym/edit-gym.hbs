@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <h1>Editar Gimnasio Pokemon</h1>
+            <hr>
+            <form action="/profile/{{oneGym._id}}/edit-gym" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label"> Gimnasio Pokemon</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{oneGym.name}}" />
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="leader">Líder de gimnasio</label>
+                    <select class="form-select" id="leader" name="leader">
+                        <option selected>Elige...</option>
+                        {{#each leaderUsers}}
+                        <option value="{{_id}}">{{username}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="details" class="form-label">Detalles</label>
+                    <textarea class="form-control" id="details" name="details" rows="3">{{oneGym.details}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Localización</label>
+                    <input type="text" class="form-control" id="location" name="location" value="{{oneGym.location}}" />
+                </div>
+                <button type="submit" class="btn btn-dark">Editar Gimnasio</button>
+            </form>
+
+        </div>
+    </div>
+</div>

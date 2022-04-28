@@ -3,7 +3,7 @@
         <div class="col-md-5">
             <h1>Editar perfil</h1>
             <hr />
-            <form action="/profile/{{_id}}/edit" method="POST">
+            <form action="/profile/{{_id}}/edit" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="email" class="form-label">Dirección de email</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{email}}" />
@@ -15,7 +15,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="img" class="form-label">Img URL</label>
-                    <input type="text" class="form-control" id="img" name="img" value="{{img}}" />
+                    <input type="file" class="form-control" id="img" name="imgFile" />
                     <div class="form-text">Se verá públicamente</div>
                 </div>
                 <div class="mb-3">

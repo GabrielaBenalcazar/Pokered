@@ -1,9 +1,9 @@
 const router = require("express").Router();
+const fileUploader = require('./../config/cloudinary.config')
+
 const Event = require("./../models/Event.model");
 const User = require("../models/User.model");
-
 const ApiService = require("./../service/poke.api.service");
-
 const Service = new ApiService();
 
 const { isLoggedIn, checkRole } = require("./../middleware/route-guard");
@@ -26,12 +26,15 @@ router.get("/create", checkRole("ADMIN", "LEADER"), (req, res, next) => {
         .catch((err) => next(err));
 });
 
-router.post("/create", isLoggedIn, (req, res, next) => {
+router.post("/create", fileUploader.single('imgFile'), isLoggedIn, (req, res, next) => {
     const leader = req.session.currentUser._id;
     const { name, details, location, date, pokemon1, pokemon2 } = req.body;
+    const { path } = req.file;
+
     let pokemons = [pokemon1, pokemon2];
 
-    Event.create({ name, details, location, date, leader, pokemons })
+
+    Event.create({ name, details, location, date, img: path, leader, pokemons })
         .then(() => {
             res.redirect("/events");
         })
@@ -49,10 +52,11 @@ router.get("/:id/edit", (req, res, next) => {
         .catch((err) => next(err));
 });
 
-router.post("/:id/edit", (req, res, next) => {
+router.post("/:id/edit", fileUploader.single('imgFile'), (req, res, next) => {
     const { id } = req.params;
     const { name, details, location, date } = req.body;
-    Event.findByIdAndUpdate(id, { name, details, location, date })
+    const { path } = req.file;;
+    Event.findByIdAndUpdate(id, { name, details, location, date, img: path })
         .then((lastEvent) => {
             res.redirect("/events");
         })
@@ -78,7 +82,6 @@ router.post("/:id", (req, res, next) => {
     Event.findByIdAndUpdate(id, { $addToSet: { participants: user } })
         .then((event) => {
             const { pokemons } = event;
-
             return User.findByIdAndUpdate(user, { $addToSet: { pokemons } });
         })
         .then(() => {
