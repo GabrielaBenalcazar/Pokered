@@ -89,7 +89,7 @@ figure img {
 }
 
 .poke-img-bg {
-    background-image: linear-gradient(180deg, #adffff 0, #a4ffff 25%, #9df2f2 50%, #97dade 75%, #92c5cb 100%);
+    background-image: linear-gradient(180deg, #d7d7d7 0,  #b0b0b0 25%, #8b8a8a 50%, #676666 75%,  #454444 100%);
 }
 
 .buttons-Admin {
