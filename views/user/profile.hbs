@@ -2,21 +2,31 @@
     <div id="error">{{errorMessage}}</div>
 {{/if}}
 
-<header class=" profileHeader">
+<header class="profileHeader">
     <div class="container">
-        <div class="row gx-5 align-items-center justify-content-center">
+        <div class="row gx-5 align-items-start justify-content-center">
             <div class="col-lg-8 col-xl-7 col-xxl-6">
                 <div class="my-5 text-center text-xl-start">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Bienvenido,<span class="capitaliced" >{{user.username}}</span></h1>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Bienvenido <span
+                            class="capitaliced"
+                        >{{user.username}}</span></h1>
+                    <div
+                        class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start"
+                    >
 
                         {{#if isLeader}}
-                            <a class="btn btn-primary btn-sm px-4 me-sm-3" href="/profile/gym">Tu
+                            <a class="btn btn-light btn-sm px-4 me-sm-3" href="/profile/gym">Tu
                                 PokeGym</a>
                         {{/if}}
 
-                        <a class="btn btn-light btn-sm px-4 me-sm-3" href="/profile/{{user._id}}/edit">Editar Perfil</a>
-                        <a class="btn btn-danger btn-sm px-4" href="/profile/{{user._id}}/delete">Eliminar Perfil</a>
+                        <a
+                            class="btn btn-light btn-sm px-4 me-sm-3"
+                            href="/profile/{{user._id}}/edit"
+                        >Editar Perfil</a>
+                        <a
+                            class="btn btn-dark btn-sm px-4"
+                            href="/profile/{{user._id}}/delete"
+                        >Eliminar Perfil</a>
 
                     </div>
 
@@ -73,26 +83,32 @@
                 {{#each viewInfo.allGyms}}
 
                     <div class="col mb-5">
-                        <div class="card h-80">
+                        <div class="card h-80 p-4 gymCard">
                             <!-- Product image-->
-                            <img src="{{img}}" alt="imagen gimnasio pokemon " />
+                            <div >
+                                <img src="{{img}}" alt="imagen gimnasio pokemon " />
+
+                            </div>
+
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
 
                                     <article>
 
-                                        <h5 class="card-title">{{name}}</h5>
-                                        <p class="card-text">{{leader.username}}</p>
-                                        <p class="card-text">{{location}}</p>
+                                        <h5 class="card-title"> Nombre del Gimnasio: <span class="capitaliced ">{{name}}</span></h5>
+                                        <p class="card-text ">Nombre del Leader: <span class="capitaliced">{{leader.username}}</span></p>
+                                        <p class="card-text capitaliced">Location: <span class="capitaliced">{{location}}</span> </p>
 
                                     </article>
 
-                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start" >
+                                    <div
+                                        class=" mt-3 d-grid gap-3 d-md-flex align-items-start justify-content-md-start"
+                                    >
 
-                                       
-                                        <a class="btn btn-outline-dark btn-md px-4 me-sm-3"  href="/profile/gym/{{_id}}/edit"> Editar</a>
-
+                                        <a class="btn btn-outline-light btn-md px-4 me-sm-3"
+                                            href="/profile/gym/{{_id}}/edit"
+                                        > Editar</a>
 
                                         <form action="/profile/gym/{{_id}}/delete" method="POST">
                                             <button
@@ -105,7 +121,6 @@
 
                                 </div>
                             </div>
-                            <!-- Product actions-->
 
                         </div>
                     </div>
@@ -122,13 +137,12 @@
     <div class="container px-4 px-lg-5">
         <h2> TUS POKEMONS </h2>
 
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center
-       ">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 justify-content-center">
 
             {{#each viewInfo.allPokemons}}
 
-                <div class=" col  mb-2 ">
-                    <div class="card pokemonCard h-100 p-4  ">
+                <div class="col mb-3">
+                    <div class="card pokemonCard h-100 p-4">
                         <!-- Product image-->
 
                         <div>
@@ -140,10 +154,12 @@
                         </div>
 
                         <!-- Product details-->
-                        <div class="card-body  p-2 center ">
-                            <div class="text-center  ">
-
-                                    <a class="btn btn-outline-dark btn-md " href="/pokemons/{{name}}">{{name}}</a>
+                        <div class="card-body p-2 center">
+                            <div class="text-center">
+                                <a
+                                    class="btn btn-outline-dark btn-md"
+                                    href="/pokemons/{{name}}"
+                                ><span class="capitaliced">{{name}}</span></a>
 
                             </div>
                         </div>
@@ -164,21 +180,22 @@
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
             {{#each viewInfo.allEvents}}
 
-                <div class="col mb-5">
-                    <div class="card h-80">
+                <div class="col ">
+                    <div class="card h-80 p-4 eventCard">
                         <!-- Product image-->
                         <img src="{{img}}" alt="imagen evento pokemon " />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
 
-                                <h5 class="card-title">{{name}}</h5>
-                                <p class="card-text">{{details}}</p>
-                                <p class="card-text">{{date}}</p>
-                                <p class="card-text">{{location}}</p>
+                                <h5 class="card-title capitaliced">Nombre del Evento: {{name}}</h5>
+                                <p class="card-text capitaliced">Detalles: {{details}}</p>
+                                <p class="card-text capitaliced">Fecha: {{date}}</p>
+                                <p class="card-text capitaliced">Lugar: {{location}}</p>
+                                <p>Tus Pokemons a ganar:</p>
                                 {{#each pokemons}}
-                                    <a href="/pokemons/{{this}}">{{this}}</a>
-                                {{/each}}
+                                    <a class="capitaliced" href="/pokemons/{{this}}">{{this}},</a>
+                                {{/each}} 
 
                             </div>
                         </div>

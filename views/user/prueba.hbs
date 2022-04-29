@@ -1,10 +1,42 @@
+<div class="loginCnt">
 
+    <div class="container">
 
-<div class="general-profile">
+        <section class="get-in-touch">
+            <h1 class="title fw-bolder">Login</h1>
+            <form class="contact-form row" action="/login" method="POST">
 
-        <div class="col-md-3">
-           
-           
-            
-        </div>
-   
+                <div class="form-field col-lg-6">
+
+                    <input
+                        type="email"
+                        class="form-control input-text js-input"
+                        id="email"
+                        name="email"
+                    />
+                    <label for="email" class="form-label text-col-lgn">Dirección de email</label>
+                </div>
+                <div class="form-field col-lg-6">
+
+                    <input
+                        id="password"
+                        class="input-text js-input form-control"
+                        type="password"
+                        name="plainPassword"
+                        required
+                    />
+                    <label for="password" class="form-label text-col-lgn">Contraseña</label>
+                </div>
+
+                {{#if errorMessage}}
+                    <div id="error">{{errorMessage}}</div>
+                {{/if}}
+
+                <div class="form-field col-lg-12">
+                    <button type="submit" class="submit-btn">Iniciar sesión</button>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>

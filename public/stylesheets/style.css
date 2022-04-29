@@ -1,8 +1,14 @@
+ .body-font{
+
+     font-family: 'Montserrat', sans-serif
+
+ }
+
 img {
     width: 100%;
 }
 .navbar-brand {
-    font-family: "Bebas Neue", cursive;
+    font-family: 'Montserrat', sans-serif;
     font-size: 30;
 }
 a.navbar-brand {
@@ -12,7 +18,11 @@ a.navbar-brand {
 a {
     text-decoration: none;
 }
+.sice-canvas{
 
+    width: 200;
+
+}
 .logout-button {
     padding: 0;
     margin: 0;
@@ -73,19 +83,30 @@ figure img {
 /* //fondos  */
 
 .profileGyms {
-    background-color: aquamarine;
+    background-color: rgb(214, 217, 216);
+}
+
+.profileGyms h2{
+    margin-bottom: 30px;
 }
 
 .profileEvents {
     background-color: rosybrown;
 }
-
+.profileEvents h2 {
+    margin-bottom: 30px;
+}
 .profilePokemons {
     background-color: rgb(51, 51, 51);
 }
 
+.profilePokemons h2{
+    color: beige;
+    margin-bottom: 30px;
+}
+
 .profileHeader {
-    background-image: url("../images/fondoPerfil.png");
+    background-image: url("../images/fondoPerfil2.png");
     background-size: cover;
 }
 .backgroundIndex {
@@ -97,11 +118,38 @@ figure img {
     background-color: rgb(170, 170, 170);
 }
 
-/* //cartaspokemon */
+/* //cards */
 
 .pokemonCard img {
     width: 120px;
     height: 135px;
+}
+
+.gymCard img {
+    width: 270px;
+    height: 180px;
+    display: block;
+}
+
+.gymCard {
+    background-color: brown;
+    color: beige;
+}
+
+.eventCard img {
+    width: 270px;
+    height: 180px;
+
+    display: block;
+}
+.eventCard {
+    background-color: rgb(70, 70, 70);
+    color: rgb(162, 162, 162);
+}
+
+.eventCard a {
+  
+    color: rgb(227, 227, 227);
 }
 
 .center {
@@ -116,4 +164,100 @@ figure img {
 .profileImage img {
     width: 370px;
     height: 450px;
+}
+
+/* butons */
+
+.btn-delete {
+    background-color: rgb(211, 152, 253);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.get-in-touch {
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative;
+
+}
+.get-in-touch .title {
+  text-align: center;
+  
+  letter-spacing: 3px;
+  font-size: 3.2em;
+  line-height: 48px;
+  padding-bottom: 48px;
+     color: #e1dccd ;
+    background: #e1dccd ;
+    background: -moz-linear-gradient(left,#0e0505  0%,#000000  100%) !important;
+    background: -webkit-linear-gradient(left,#0e0505  0%,#000000 100%) !important;
+    background: linear-gradient(to right,#0e0505  0%,#000000   100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.text-col-lgn{
+    color: #0e0505;
+}
+
+.contact-form .form-field {
+  position: relative;
+  margin: 32px 0;
+}
+.contact-form .input-text {
+  display: block;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  border-color: #0e0505 ;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+.contact-form .input-text:focus {
+  outline: none;
+}
+.contact-form .input-text:focus + .label,
+.contact-form .input-text.not-empty + .label {
+  -webkit-transform: translateY(-24px);
+          transform: translateY(-24px);
+}
+.contact-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #0e0505 ;
+  cursor: text;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+  transition: transform .2s ease-in-out, 
+  -webkit-transform .2s ease-in-out;
+}
+.contact-form .submit-btn {
+  display: inline-block;
+  background-color: #000;
+   background-image: linear-gradient(125deg,#0e0505,#000000 );
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width:200px;
+  cursor: pointer;
 }

@@ -1,34 +1,34 @@
 <div class="backgroundIndex">
 
-    <div class="container ">
-    <div class="row index-container align-items-center justify-content-center">
+    <div class="container">
+        <div class="row index-container align-items-center justify-content-center">
 
-        <div class="col-md-5">
+            
 
-            <form action="/" method="POST">
-                <div class="input-group flex-nowrap mb-3">
-                    <input
-                        type="pokemonName"
-                        placeholder="Nombre de Pokemon"
-                        class="form-control"
-                        id="pokemonName"
-                        name="pokemonName"
-                    />
-                             <button type="submit" class="btn btn-dark">YO TE ELIJO</button>
-                </div>
+            <div class="col-md-5">
 
-            </form>
+                <form action="/" method="POST">
+                
+                    <div class="input-group flex-nowrap mb-3">
+                        <input
+                            type="pokemonName"
+                            placeholder="Nombre de Pokemon"
+                            class="form-control"
+                            id="pokemonName"
+                            name="pokemonName"
+                        />
+                        <button type="submit" class="btn btn-dark">YO TE ELIJO</button>
+                    </div>
 
-            {{#if errorMessage}}
-                <div id="error">{{{errorMessage}}}</div>
-            {{/if}}
+                </form>
+
+                {{#if errorMessage}}
+                    <div id="error">{{{errorMessage}}}</div>
+                {{/if}}
+
+            </div>
 
         </div>
-
     </div>
-</div>
-
 
 </div>
-
-
