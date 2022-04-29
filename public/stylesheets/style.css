@@ -1,6 +1,5 @@
 .body-font {
-
-    font-family: 'Montserrat', sans-serif
+    font-family: "Montserrat", sans-serif;
 }
 
 img {
@@ -8,7 +7,7 @@ img {
 }
 
 .navbar-brand {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 30;
 }
 
@@ -21,9 +20,7 @@ a {
 }
 
 .sice-canvas {
-
     width: 200;
-
 }
 
 .logout-button {
@@ -47,9 +44,7 @@ figure img {
     background-color: rgba(230, 140, 140, 0.5);
 }
 
-
 .pokeImg {
-
     margin-top: 40px;
     margin-bottom: 20px;
     width: 150px;
@@ -68,7 +63,6 @@ figure img {
     border: 1px solid rgb(117, 117, 117);
     text-align: center;
     border-radius: 5px;
-
 }
 
 .poke-card-data a {
@@ -84,12 +78,17 @@ figure img {
     text-decoration: none;
     text-align: right;
     margin-right: 35px;
-
-
 }
 
 .poke-img-bg {
-    background-image: linear-gradient(180deg, #d7d7d7 0,  #b0b0b0 25%, #8b8a8a 50%, #676666 75%,  #454444 100%);
+    background-image: linear-gradient(
+        180deg,
+        #d7d7d7 0,
+        #b0b0b0 25%,
+        #8b8a8a 50%,
+        #676666 75%,
+        #454444 100%
+    );
 }
 
 .buttons-Admin {
@@ -161,9 +160,7 @@ figure img {
     background-color: rgb(170, 170, 170);
 }
 
-
 .gym-bg {
-
     pointer-events: none;
     position: absolute;
     width: 100%;
@@ -180,7 +177,7 @@ figure img {
     margin: auto;
     margin-top: 20px;
     padding: 10px;
-    width: 235px;
+    width: 280px;
     background-color: rgba(146, 108, 187, 0.6);
     color: white;
     font-size: 2em;
@@ -278,7 +275,8 @@ figure img {
 .eventCard img {
     width: 270px;
     height: 180px;
-
+    margin-left: auto;
+    margin-right: auto;
     display: block;
 }
 
@@ -288,7 +286,6 @@ figure img {
 }
 
 .eventCard a {
-
     color: rgb(227, 227, 227);
 }
 
@@ -317,7 +314,6 @@ figure img {
     max-width: 800px;
     margin: 50px auto;
     position: relative;
-
 }
 
 .get-in-touch .title {
@@ -360,8 +356,8 @@ figure img {
     outline: none;
 }
 
-.contact-form .input-text:focus+.label,
-.contact-form .input-text.not-empty+.label {
+.contact-form .input-text:focus + .label,
+.contact-form .input-text.not-empty + .label {
     -webkit-transform: translateY(-24px);
     transform: translateY(-24px);
 }
@@ -375,10 +371,9 @@ figure img {
     font-weight: 400;
     color: #0e0505;
     cursor: text;
-    transition: -webkit-transform .2s ease-in-out;
-    transition: transform .2s ease-in-out;
-    transition: transform .2s ease-in-out,
-        -webkit-transform .2s ease-in-out;
+    transition: -webkit-transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
 
 .contact-form .submit-btn {

@@ -2,31 +2,32 @@
     <div class="row">
         <div class="col-md-6 ">
             <div class="d-flex justify-content-center">
+             
                 <div class="card " style="width: 18rem;">
-                    <img class="card-img-top" src="{{img}}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">{{name}}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{details}}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{location}}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{date}}</p>
-                    </div>
+                <div class="height-card">
+                    <img src="{{img}}" class="card-img-top" alt="..." />
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">{{details}}</p>
+                    <p class="card-text"> {{date}}</p>
+                    <p class="card-text"> {{location}}</p>
+                    {{#each pokemons}}
+                    <a href="/pokemons/{{this}}">{{this}}</a>
+                    {{/each}}
+                </div>
+               
+            </div>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="height: 100px;">
             <h6 class="mb-5">Asistentes</h6>
             {{#each participants}}
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-3">
-                        <img style="height: 3rem" src="{{img}}" class="img-fluid rounded-start" alt="...">
+                        <img style="height: 6rem; max-width: 100px;" src="{{img}}" class="img-fluid rounded-start" alt="...">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body" style="height: 3rem">
@@ -45,13 +46,7 @@
                 </div>
             </div>
             {{/each}}
-            {{#each pokemons}}
-            <ul>
-                <li>
-                    <a href="/pokemons/{{this}}">{{this}}</a>
-                </li>
-            </ul>
-            {{/each}}
+          
         </div>
     </div>
 </div>
