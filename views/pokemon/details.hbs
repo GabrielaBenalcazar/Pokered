@@ -1,36 +1,32 @@
 <div class="container">
-
-    <h1>soy los detalles de <span class="capitaliced">{{name}}</span> </h1>
-
+    <h1 class="pokemon-name capitaliced"><span>{{name}}</span> </h1>
     <div class="row">
-
-        <div class="col-md-6">
-
-            <figure>
-                <img src="{{sprites.other.dream_world.front_default}}" alt="image {{name}}" />
+        <div class="col-md-6 poke-img-bg ">
+            <figure class="main-img-pokemon">
+                <img class="pokeImg" src="{{sprites.other.dream_world.front_default}}" alt="image {{name}}" />
             </figure>
-
-            <div>
-                <h3>NUMERO: {{id}} </h3>
-            </div>
-
         </div>
-
         <div class="col-md-6">
+            <div class="text-center">
+                <h3>Habilidades</h3>
 
-            <div>
-
-                <h3>habilities</h3>
                 <ul>
                     {{#each abilities}}
-                        <li>
-                            {{ability.name}}
 
-                        </li>
+                    <p>{{ability.name}}</p>
 
                     {{/each}}
-
                 </ul>
+                <hr>
+                <h3> Experiencia</h3>
+                <p>{{base_experience}}</p>
+                <hr>
+                <h3> Altura</h3>
+                <p>{{height}} cm</p>
+                <hr>
+                <h3> Peso</h3>
+                <p>{{weight}} lbs</p>
+                <hr>
 
             </div>
 

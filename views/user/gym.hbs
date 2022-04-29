@@ -3,34 +3,31 @@
 {{/each}}
 <div class="container">
     {{#each Gym}}
-    <h3>{{name}} </h3>
-    <a type="button" class="btn btn-outline-secondary" href="/events/create">Create Event</a>
+    <h3 class="title-subp">{{name}} </h3>
+    <a type="button" class="btn btn-warning" href="/events/create">Create Event</a>
     <p></p>
     {{/each}}
     <divv class="row">
         {{#each allEvent}}
-        <div class="col-md-6 mb-5">
-            <div class="card" style="width: 18rem;">
+        <div class="col-md-4 mb-5 ">
+            <div class="card  bg-card" style="width: 22rem;">
                 <div class="height-card">
                     <img src="{{img}}" class="card-img-top" alt="...">
                 </div>
-
-                <div class="card-body">
+                <div class="card-body ">
                     <h5 class="card-title">{{name}}</h5>
                     <p class="card-text">{{details}}</p>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{date}}</li>
-                    <li class="list-group-item"><strong>{{location}}</strong> </li>
+                    <li class="list-group-item bg-card">{{date}}</li>
+                    <li class="list-group-item bg-card"><strong>{{location}}</strong> </li>
                     {{#each pokemons}}
                     <a class="btn btn-outline-dark btn-md m-2" href="/pokemons/{{this}}">{{this}}</a>
                     {{/each}}
                 </ul>
-                <div class="row button-events-leader">
+                <div class="row button-events-leader mt-2 mb-2">
                     <div class="col-md-4">
-                        <form action="/events/{{id}}/edit">
-                            <button type="button" class="btn btn-outline-warning btn-sm">EDIT</button>
-                        </form>
+                        <a class="btn btn-outline-warning btn-sm" href=" /events/{{id}}/edit">EDIT</a>
                     </div>
                     <div class="col-md-4">
                         <form action="/events/{{id}}/delete" method="POST">
@@ -46,9 +43,4 @@
             </div>
         </div>
         {{/each}}
-</div>
-
-</div>
-<h5>Dirigido por: <strong>{{name}}</strong> </h5>
-
 </div>

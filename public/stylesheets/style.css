@@ -1,3 +1,7 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 img {
     width: 100%;
 }
@@ -23,19 +27,49 @@ figure img {
     background-color: rgba(230, 140, 140, 0.5);
 }
 
-/* .card {
-    margin-left: 15px;
-    margin-right: 15px;
-    width: 100px;
-} */
-
 
 .pokeImg {
+
+    margin-top: 40px;
+    margin-bottom: 20px;
     width: 150px;
+    height: 200px;
     display: block;
     justify-content: center;
     margin-right: auto;
     margin-left: auto;
+}
+
+.name-card {
+    margin: auto;
+    padding: auto;
+    display: block;
+    width: 150px;
+    border: 1px solid rgb(117, 117, 117);
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.poke-card-data a {
+    color: rgb(227, 227, 227);
+    text-shadow: 2px 2px 2px gray;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.poke-card-data p {
+    color: rgb(163, 163, 163);
+    text-decoration: none;
+    text-align: right;
+    margin-right: 35px;
+
+
+}
+
+.poke-img-bg {
+    background-image: linear-gradient(180deg, #adffff 0, #a4ffff 25%, #9df2f2 50%, #97dade 75%, #92c5cb 100%);
 }
 
 .buttons-Admin {
@@ -92,11 +126,34 @@ figure img {
 }
 
 .gym-bg {
+
     pointer-events: none;
     position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 140vh;
     z-index: -1;
+}
+
+.card {
+    height: 100%;
+}
+
+.title-subp {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    width: 235px;
+    background-color: rgba(146, 108, 187, 0.6);
+    color: white;
+    font-size: 2em;
+    text-shadow: 2px 2px 2px rgb(99, 99, 99);
+    border: 2px solid rgb(83, 83, 83);
+    border-radius: 15px;
+}
+
+.bg-card {
+    background-color: gray;
 }
 
 .edit-bottom {
@@ -113,7 +170,6 @@ figure img {
     margin-right: 5px;
 }
 
-
 .button-events-leader div {
     margin: auto;
     display: flex;
@@ -124,4 +180,40 @@ figure img {
 .button-events-leader form {
     height: 17px;
     margin-top: 2px;
+}
+
+.events-title {
+    margin: 20px;
+}
+
+.user-list-img {
+    height: 123px;
+}
+
+.link-list-user {
+    color: rgb(239, 239, 239);
+    text-decoration: none;
+}
+
+.pokemon-name span {
+    padding: 4px 8px;
+    border-bottom: 1px solid gray;
+}
+
+.pokemon-name {
+    padding: 5px;
+    margin: 20px;
+    margin-left: 100px;
+}
+.pokeImg {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 100%;
+    display: block;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+.main-img-pokemon img {
+    margin-top: 140px;
 }
