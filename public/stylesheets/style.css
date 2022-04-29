@@ -1,9 +1,29 @@
-body {
-    font-family: Arial, Helvetica, sans-serif;
+.body-font {
+
+    font-family: 'Montserrat', sans-serif
 }
 
 img {
     width: 100%;
+}
+
+.navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30;
+}
+
+a.navbar-brand {
+    color: rgb(255, 211, 53);
+}
+
+a {
+    text-decoration: none;
+}
+
+.sice-canvas {
+
+    width: 200;
+
 }
 
 .logout-button {
@@ -82,10 +102,6 @@ figure img {
     padding-right: 5px;
 }
 
-/* .general-profile {
-    margin-left: 50px;
-    margin-right: 50px;
-} */
 .index-container {
     height: 100%;
 }
@@ -101,29 +117,50 @@ figure img {
 
 .pt {
     padding-top: 30px;
-
+    padding-bottom: 30px;
 }
 
-.profileGyms {
-    background-color: aquamarine;
+/* //fondos  */
 
+.profileGyms {
+    background-color: rgb(214, 217, 216);
+}
+
+.profileGyms h2 {
+    margin-bottom: 30px;
 }
 
 .profileEvents {
     background-color: rosybrown;
+}
 
+.profileEvents h2 {
+    margin-bottom: 30px;
 }
 
 .profilePokemons {
-    background-color: lightpink;
+    background-color: rgb(51, 51, 51);
+}
 
+.profilePokemons h2 {
+    color: beige;
+    margin-bottom: 30px;
 }
 
 .profileHeader {
-
-    background-color: lightpink;
-
+    background-image: url("../images/fondoPerfil2.png");
+    background-size: cover;
 }
+
+.backgroundIndex {
+    background-image: url("../images/fondoIndex.jpg");
+    background-size: cover;
+}
+
+.pokemonCard {
+    background-color: rgb(170, 170, 170);
+}
+
 
 .gym-bg {
 
@@ -205,6 +242,7 @@ figure img {
     margin: 20px;
     margin-left: 100px;
 }
+
 .pokeImg {
     margin-top: 40px;
     margin-bottom: 20px;
@@ -214,6 +252,145 @@ figure img {
     margin-right: auto;
     margin-left: auto;
 }
+
 .main-img-pokemon img {
     margin-top: 140px;
+}
+
+/* //cards */
+
+.pokemonCard img {
+    width: 120px;
+    height: 135px;
+}
+
+.gymCard img {
+    width: 270px;
+    height: 180px;
+    display: block;
+}
+
+.gymCard {
+    background-color: brown;
+    color: beige;
+}
+
+.eventCard img {
+    width: 270px;
+    height: 180px;
+
+    display: block;
+}
+
+.eventCard {
+    background-color: rgb(70, 70, 70);
+    color: rgb(162, 162, 162);
+}
+
+.eventCard a {
+
+    color: rgb(227, 227, 227);
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center a {
+    display: block;
+}
+
+.profileImage img {
+    width: 370px;
+    height: 450px;
+}
+
+/* butons */
+
+.btn-delete {
+    background-color: rgb(211, 152, 253);
+}
+
+.get-in-touch {
+    max-width: 800px;
+    margin: 50px auto;
+    position: relative;
+
+}
+
+.get-in-touch .title {
+    text-align: center;
+
+    letter-spacing: 3px;
+    font-size: 3.2em;
+    line-height: 48px;
+    padding-bottom: 48px;
+    color: #e1dccd;
+    background: #e1dccd;
+    background: -moz-linear-gradient(left, #0e0505 0%, #000000 100%) !important;
+    background: -webkit-linear-gradient(left, #0e0505 0%, #000000 100%) !important;
+    background: linear-gradient(to right, #0e0505 0%, #000000 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.text-col-lgn {
+    color: #0e0505;
+}
+
+.contact-form .form-field {
+    position: relative;
+    margin: 32px 0;
+}
+
+.contact-form .input-text {
+    display: block;
+    width: 100%;
+    height: 36px;
+    border-width: 0 0 2px 0;
+    border-color: #0e0505;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.contact-form .input-text:focus {
+    outline: none;
+}
+
+.contact-form .input-text:focus+.label,
+.contact-form .input-text.not-empty+.label {
+    -webkit-transform: translateY(-24px);
+    transform: translateY(-24px);
+}
+
+.contact-form .label {
+    position: absolute;
+    left: 20px;
+    bottom: 11px;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #0e0505;
+    cursor: text;
+    transition: -webkit-transform .2s ease-in-out;
+    transition: transform .2s ease-in-out;
+    transition: transform .2s ease-in-out,
+        -webkit-transform .2s ease-in-out;
+}
+
+.contact-form .submit-btn {
+    display: inline-block;
+    background-color: #000;
+    background-image: linear-gradient(125deg, #0e0505, #000000);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    padding: 8px 16px;
+    border: none;
+    width: 200px;
+    cursor: pointer;
 }

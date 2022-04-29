@@ -36,7 +36,7 @@ router.post("/create", fileUploader.single('imgFile'), isLoggedIn, (req, res, ne
 
     Event.create({ name, details, location, date, img: path, leader, pokemons })
         .then(() => {
-            res.redirect("/events");
+            res.redirect("/events/create");
         })
         .catch((err) => next(err));
 });
@@ -113,7 +113,7 @@ router.post("/:idEvent/give-pokemons/:idUser", (req, res, next) => {
 
 
             const { pokemons } = event
-            return User.findByIdAndUpdate(idUser, { $addToSet: { pokemons } });
+            return User.findByIdAndUpdate(idUser, { $addToSet: { pokemons } })
         })
         .then(() => {
             res.redirect("/profile")

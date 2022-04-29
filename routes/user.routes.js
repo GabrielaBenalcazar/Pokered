@@ -18,36 +18,38 @@ const { isLoggedIn, checkRole } = require("./../middleware/route-guard");
 router.get("/", isLoggedIn, (req, res, next) => {
     const isLeader = req.session.currentUser.role === "LEADER";
     const isAdmin = req.session.currentUser.role === "ADMIN";
-    const user = req.session.currentUser;
-    const { _id, pokemons } = req.session.currentUser;
+    const userId = req.session.currentUser._id;
 
-    const eventsGymsPrm = [Event.find({ participants: _id }), Gym.find().populate("leader")];
+    let user;
 
-    const pokemnNamesPrm = pokemons.map((elm) => Service.getPokemonByName(elm));
+    User.findById(userId)
+        .then((dbUser) => {
+            user = dbUser;
 
-    const viewInfo = {};
+            const pokemonDetailsPromises = user.pokemons.map((pokemonName) =>
+                Service.getPokemonByName(pokemonName)
+            );
 
-    Promise
-        .all(eventsGymsPrm)
-        .then(([allEvents, allGyms]) => {
-            viewInfo.allEvents = allEvents;
-            viewInfo.allGyms = allGyms;
-            return Promise.all(pokemnNamesPrm);
+            const eventsPromise = Event.find({ participants: userId });
+
+            const gymsPromise = Gym.find().populate("leader");
+
+            return Promise.all([Promise.all(pokemonDetailsPromises), eventsPromise, gymsPromise]);
         })
-        .then((allPokemons) => {
-            viewInfo.allPokemons = allPokemons;
-            console.log(viewInfo)
+        .then(([allPokemons, allEvents, allGyms]) => {
+            const viewInfo = { allPokemons, allEvents, allGyms };
+
+            console.log(viewInfo);
+
             res.render("user/profile", { user, isLeader, isAdmin, viewInfo });
         })
         .catch((err) => next(err));
 });
 
-
 ///List Users
-router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
-    const promise = [User.find({ role: 'TRAINER' }), User.find({ role: 'LEADER' })]
-    Promise
-        .all(promise)
+router.get("/list", isLoggedIn, checkRole("ADMIN"), (req, res, next) => {
+    const promise = [User.find({ role: "TRAINER" }), User.find({ role: "LEADER" })];
+    Promise.all(promise)
         .then(([trainerUsers, leaderUsers]) => {
             res.render("user/list-user", { trainerUsers, leaderUsers });
         })
@@ -55,26 +57,24 @@ router.get("/list", isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 });
 ////EDIT TO LEADER
 
-router.post('/list/:id/editToLeader', (req, res, next) => {
-    const { id } = req.params
-    User
-        .findByIdAndUpdate(id, { role: 'LEADER' })
-        .then(toLeader => {
-            res.redirect('/profile/list')
+router.post("/list/:id/editToLeader", (req, res, next) => {
+    const { id } = req.params;
+    User.findByIdAndUpdate(id, { role: "LEADER" })
+        .then((toLeader) => {
+            res.redirect("/profile/list");
         })
-        .catch(err => next(err))
-})
+        .catch((err) => next(err));
+});
 ////EDIT TO TRAINER
 
-router.post('/list/:id/editToTranier', (req, res, next) => {
-    const { id } = req.params
-    User
-        .findByIdAndUpdate(id, { role: 'TRAINER' })
-        .then(toLeader => {
-            res.redirect('/profile/list')
+router.post("/list/:id/editToTranier", (req, res, next) => {
+    const { id } = req.params;
+    User.findByIdAndUpdate(id, { role: "TRAINER" })
+        .then((toLeader) => {
+            res.redirect("/profile/list");
         })
-        .catch(err => next(err))
-})
+        .catch((err) => next(err));
+});
 
 ///EDIT PROFILE
 router.get("/:id/edit", isLoggedIn, (req, res, next) => {
@@ -130,6 +130,5 @@ router.get("/gym", isLoggedIn, checkRole("ADMIN", "LEADER"), (req, res, next) =>
         })
         .catch((err) => next(err));
 });
-
 
 module.exports = router;
